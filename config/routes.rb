@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  namespace :vendor do
-    get 'bookings/index'
-    get 'bookings/show'
-    get 'bookings/edit'
-    get 'bookings/update'
-  end
   devise_for :users
   root to: "vehicles#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
