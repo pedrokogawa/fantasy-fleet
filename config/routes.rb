@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   resources :vehicles
-  resources :bookings, only: [ :index, :show, :edit,:update ]
+  resources :bookings, except: [ :destroy ]
 
   namespace :vendor do 
-    resources :bookings, only: [ :index, :show, :edit,:update ]
+    resources :bookings, only: [ :index, :show, :edit, :update ]
   end
 end
