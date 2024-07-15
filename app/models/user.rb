@@ -8,5 +8,4 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :first_name, :last_name, :birthday, presence: true
   validates :first_name, :last_name, format: { with: /\A[a-zA-Z]+\z/ }
-  validates :birthday, date: { after: -> { Date.new(1900, 1, 1) } }
 end
