@@ -10,6 +10,7 @@ class VehiclesController < ApplicationController
     def show
     end
 
+    # new has @vehicle ~ test OK 
     def new
         @vehicle = Vehicle.new
     end   
@@ -25,6 +26,7 @@ class VehiclesController < ApplicationController
         end
     end
 
+    # edit has @vehicle and can update ~ test OK 
     def edit
     end    
     
@@ -33,6 +35,7 @@ class VehiclesController < ApplicationController
         redirect_to vehicle_path
     end
 
+    # destory has @vehicle and can DESTROY ~ test OK 
     def destroy
         @vehicle.destroy
         redirect_to vehicles_path, status: :see_other
