@@ -3,3 +3,4 @@
 <p>Total is: ¥<%= @booking.total_price %></p>
 <p>Status: <%= @booking.status %></p>
 <span>[ <%= @booking.user_id %> ][ <%= @booking.vehicle_id %> ]</span>
+<%= link_to "Edit Booking", edit_booking_path, class: 'btn btn-success' %>
