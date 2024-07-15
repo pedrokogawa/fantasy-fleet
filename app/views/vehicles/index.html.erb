@@ -1,5 +1,6 @@
 <h1>Welcome to FANTASY FLEET's INDEX page</h1>
 <h2>Check if working:</h2>
+<%= link_to "Create a vehicle", new_vehicle_path, class: 'btn btn-primary' %>
 <div class="container">
   <% @vehicles.each do |vehicle| %>
     <p><%= vehicle.name %></p>
@@ -11,5 +12,6 @@
     <p><%= vehicle.location %></p>
     <p><%= vehicle.availability %></p>
     <p><%= vehicle.user_id %></p>
+    <%= link_to "Show details", vehicle_path(vehicle), class: 'btn btn-primary' %>
   <% end %>
 </div>

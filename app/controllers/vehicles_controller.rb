@@ -1,5 +1,5 @@
 class VehiclesController < ApplicationController
-    before_action :set_vehicle, only: [:show]
+    before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
 
     # //root page// has @vehicles ~ test OK 
     def index
@@ -29,9 +29,13 @@ class VehiclesController < ApplicationController
     end    
     
     def update
+        @vehicle.update(vehicle_params)
+        redirect_to vehicle_path
     end
 
     def destroy
+        @vehicle.destroy
+        redirect_to vehicles_path, status: :see_other
     end
 
     private
