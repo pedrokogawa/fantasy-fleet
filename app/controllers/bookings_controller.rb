@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+    before_action :set_booking, only: [:show]
 
     # index is at /boookings ~ test OK
     def index
@@ -18,5 +19,15 @@ class BookingsController < ApplicationController
     end
 
     def update
+    end
+
+    private
+
+    def set_booking
+      @booking = Booking.find(params[:id])
+    end
+
+    def booking_params
+      
     end
 end
