@@ -11,9 +11,18 @@ class VehiclesController < ApplicationController
     end
 
     def new
+        @vehicle = Vehicle.new
     end   
     
     def create
+        @vehicle = Vehicle.new(vehicle_params)
+        @vehicle.user_id = current_user.id
+        
+        if @vehicle.save
+            redirect_to vehicle_path(@vehicle)
+        else
+            render :new
+        end
     end
 
     def edit
@@ -29,5 +38,9 @@ class VehiclesController < ApplicationController
 
     def set_vehicle
       @vehicle = Vehicle.find(params[:id])
+    end
+
+    def vehicle_params
+      params.require(:vehicle).permit(:name, :category, :seats, :speed, :price_per_day, :description, :location, :availability)
     end
 end

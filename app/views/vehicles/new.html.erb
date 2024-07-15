@@ -1,1 +1,13 @@
 <h1>Hello from Vehicles - NEW page</h1>
+<div class="container">
+  <%= simple_form_for @vehicle do |f| %>
+    <%= f.input :name %>
+    <%= f.input :category %>
+    <%= f.input :seats, input_html: { min: 1 } %>
+    <%= f.input :speed, input_html: { min: 0 } %>
+    <%= f.input :price_per_day, input_html: { min: 0 } %>
+    <%= f.input :description, input_html: { maxlength: 500 } %>
+    <%= f.input :location %>
+    <%= f.input :availability, as: :select, collection: [['Available', 0], ['Booked', 1], ['Maintenance', 2]] %>
+  <% end %>
+</div>
