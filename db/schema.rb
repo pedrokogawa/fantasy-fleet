@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_13_071530) do
     t.date "start_day"
     t.date "end_date"
     t.integer "total_price"
-    t.integer "status"
+    t.integer "status", default: 1
     t.bigint "user_id", null: false
     t.bigint "vehicle_id", null: false
     t.datetime "created_at", null: false
