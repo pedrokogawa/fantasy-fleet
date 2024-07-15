@@ -5,6 +5,7 @@
     <p>Booking is at: <%= booking.start_date %> to <%= booking.end_date %></p>
     <p>Total is: ¥<%= booking.total_price %></p>
     <p>Status: <%= booking.status %></p>
-    <span><%= booking.user_id %><%= booking.vehicle_id %></span>
+    <span>[ <%= booking.user_id %> ][ <%= booking.vehicle_id %> ]</span>
+    <%= link_to "Show details", booking_path(booking), class: 'btn btn-primary' %>
   <% end %>
 </div>

@@ -9,7 +9,7 @@ class BookingsController < ApplicationController
     def show
     end
 
-    #new form is at /bookings/new
+    #new form is at /bookings/new ~ test OK
     def new
         @booking = Booking.new
     end
@@ -27,7 +27,7 @@ class BookingsController < ApplicationController
         end
     end
 
-    #edit form is at /bookings/:id/edit
+    #edit form is at /bookings/:id/edit ~ test OK
     def edit
     end
 
@@ -41,7 +41,7 @@ class BookingsController < ApplicationController
         end
     end
 
-    #canceling is at /bookings/:id/cancel
+    #canceling is at /bookings/:id/cancel ~ test OK
     #this ONLY sets up the status on CANCEL
     def cancel
         @booking.status = :canceled
