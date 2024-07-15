@@ -1,1 +1,15 @@
 <h1>Welcome to FANTASY FLEET's INDEX page</h1>
+<h2>Check if working:</h2>
+<div class="container">
+  <% @vehicles.each do |vehicle| %>
+    <p><%= vehicle.name %></p>
+    <p><%= vehicle.category %></p>
+    <p><%= vehicle.seats %></p>
+    <p><%= vehicle.speed %></p>
+    <p><%= vehicle.price_per_day %></p>
+    <p><%= vehicle.description %></p>
+    <p><%= vehicle.location %></p>
+    <p><%= vehicle.availability %></p>
+    <p><%= vehicle.user_id %></p>
+  <% end %>
+</div>
