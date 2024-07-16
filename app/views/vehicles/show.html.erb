@@ -1,5 +1,6 @@
 <h1>Hello from Vehicles - SHOW page</h1>
 <div class="container">
+  <%= cl_image_tag @vehicle.photo.key, height: 300, width: 400, crop: :fill %>
   <p><%= @vehicle.name %></p>
   <p><%= @vehicle.category %></p>
   <p><%= @vehicle.seats %></p>

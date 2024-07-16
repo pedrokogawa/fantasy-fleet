@@ -32,7 +32,12 @@
             <%= f.input :location, input_html: { maxlength: 100 } %>
           </div>
           <div class="col">
-            <%= f.input :availability, as: :select, collection: [['Available', 0], ['Unavailable', 1]] %>
+            <%= f.input :availability, as: :select, collection: [['Available', 'available'], ['Unavailable', 'unavailable']] %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <%= f.input :photo, as: :file %>
           </div>
         </div>
         <div id="button-form">
