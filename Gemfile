@@ -8,6 +8,8 @@ gem "rails", "~> 7.1.3", ">= 7.1.3.4"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
+gem "cloudinary"
+
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 
@@ -53,9 +55,9 @@ gem "cloudinary"
 gem "devise"
 
 group :development, :test do
-  gem "dotenv-rails"
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
+  gem "dotenv-rails"
 end
 
 group :development do
