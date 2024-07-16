@@ -35,6 +35,11 @@
             <%= f.input :availability, as: :select, collection: [['Available', 0], ['Unavailable', 1]] %>
           </div>
         </div>
+        <div class="row">
+          <div class="col">
+            <%= f.input :photo, as: :file %>
+          </div>
+        </div>
         <div id="button-form">
           <%= f.button :submit, "Submit" %>
         </div>
