@@ -21,3 +21,4 @@ class User < ApplicationRecord
     end
   end
 end
+#  user = User.new(first_name: "Marcel", last_name:"Ribeiro", email: "marcel@gmail.com", password: "123456", birthday: Date.new(1991,1,1)
