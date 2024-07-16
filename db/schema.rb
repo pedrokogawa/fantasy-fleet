@@ -43,10 +43,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_14_093712) do
   end
 
   create_table "bookings", force: :cascade do |t|
-    t.date "start_day"
+    t.date "start_date"
     t.date "end_date"
     t.integer "total_price"
-    t.integer "status"
+    t.integer "status", default: 1
     t.bigint "user_id", null: false
     t.bigint "vehicle_id", null: false
     t.datetime "created_at", null: false
@@ -80,7 +80,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_14_093712) do
     t.integer "price_per_day"
     t.string "description"
     t.string "location"
-    t.string "availability"
+    t.integer "availability"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
