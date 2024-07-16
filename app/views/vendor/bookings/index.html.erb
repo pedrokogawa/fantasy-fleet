@@ -1,2 +1,13 @@
 <h1>Vendor::Bookings#index</h1>
 <p>Find me in app/views/vendor/bookings/index.html.erb</p>
+<h1>Hello from Bookings - INDEX page</h1>
+<%= link_to "Book a vehicle", new_booking_path, class: 'btn btn-primary' %>
+<div class="container">
+  <% @bookings.each do |booking| %>
+    <p>Booking is at: <%= booking.start_date %> to <%= booking.end_date %></p>
+    <p>Total is: ¥<%= booking.total_price %></p>
+    <p>Status: <%= booking.status %></p>
+    <span>[ <%= booking.user_id %> ][ <%= booking.vehicle_id %> ]</span>
+    <%= link_to "Show details", booking_path(booking), class: 'btn btn-primary' %>
+  <% end %>
+</div>
