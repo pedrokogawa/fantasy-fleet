@@ -1,1 +1,44 @@
-<h1>Hello from Vehicles - NEW page</h1>
+<div class="m-2">
+  <div class="form">
+    <h2 class="text-center"><strong>Create a Vehicle</strong></h2>
+    <%= simple_form_for @vehicle do |f| %>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <%= f.input :name, input_html: { maxlength: 50} %>
+          </div>
+          <div class="col">
+            <%= f.input :category %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <%= f.input :seats, input_html: { min: 1 } %>
+          </div>
+          <div class="col">
+            <%= f.input :speed, label: "Speed (km/h)", input_html: { min: 0 } %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <%= f.input :price_per_day, label: "Price per day (¥)", input_html: { min: 0 } %>
+          </div>
+          <div class="col">
+            <%= f.input :description, input_html: { maxlength: 500 } %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <%= f.input :location, input_html: { maxlength: 100 } %>
+          </div>
+          <div class="col">
+            <%= f.input :availability, as: :select, collection: [['Available', 0], ['Unavailable', 1]] %>
+          </div>
+        </div>
+        <div id="button-form">
+          <%= f.button :submit, "Submit" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
