@@ -1,1 +1,12 @@
 <h1>Hello from Bookings - EDIT page</h1>
+<%= simple_form_for @booking do |f| %>
+  <div class="form-inputs">
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+    <%= f.input :vehicle_id, collection: Vehicle.all.map { |vehicle| [vehicle.name, vehicle.id] }, prompt: "Select a vehicle" %>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+<%= button_to "Cancel Booking", cancel_booking_path(@booking), method: :patch, data: { confirm: "Are you sure you want to cancel this booking?" }, class: "btn btn-danger" %>
