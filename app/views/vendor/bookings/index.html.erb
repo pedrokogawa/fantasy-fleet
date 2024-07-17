@@ -7,6 +7,10 @@
     <p>Total is: ¥<%= booking.total_price %></p>
     <p>Status: <%= booking.status %></p>
     <span>[ <%= booking.user_id %> ][ <%= booking.vehicle_id %> ]</span>
+    <% if booking.waiting? %>
+      <%= link_to 'Accept', accept_vendor_booking_path(booking), data: {turbo_method: :patch, turbo_confirm: 'Are you sure?' }, class: 'btn btn-success' %>
+      <%= link_to 'Refuse', refuse_vendor_booking_path(booking), data: {turbo_method: :patch, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+    <% end %>
     <%= link_to "Show details", vendor_booking_path(booking), class: 'btn btn-primary' %>
   <% end %>
 </div>
