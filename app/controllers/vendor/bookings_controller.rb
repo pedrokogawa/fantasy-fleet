@@ -1,5 +1,5 @@
 class Vendor::BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :edit, :update]
+  before_action :set_booking, only: [:show, :edit, :update, :accept, :refuse]
 
   def index
     @vendor_id = current_user.id
