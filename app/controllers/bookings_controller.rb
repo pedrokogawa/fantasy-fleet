@@ -2,8 +2,9 @@ class BookingsController < ApplicationController
     before_action :set_booking, only: [:show, :edit, :update, :cancel]
 
     # index is at /boookings ~ test OK
+    #filtered with bookings created by the user only
     def index
-        @bookings = Booking.all
+        @bookings = Booking.all.where(user_id: current_user.id)
     end
 
     def show
