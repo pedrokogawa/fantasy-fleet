@@ -1,7 +1,9 @@
 <h1>Vendor::Bookings#show</h1>
 <p>Find me in app/views/vendor/bookings/show.html.erb</p>
-<p>Booking is at: <%= @booking.start_date %> to <%= @booking.end_date %></p>
-<p>Total is: ¥<%= @booking.total_price %></p>
-<p>Status: <%= @booking.status %></p>
-<span>[ <%= @booking.user_id %> ][ <%= @booking.vehicle_id %> ]</span>
 <%= link_to "Show all bookings", vendor_bookings_path, class: 'btn btn-primary' %>
+<div class="container">
+  <p>Booking is at: <%= @booking.start_date %> to <%= @booking.end_date %></p>
+  <p>Total is: ¥<%= @booking.total_price %></p>
+  <p>Status: <%= @booking.status %></p>
+  <span>[ <%= @booking.user_id %> ][ <%= @booking.vehicle_id %> ]</span>
+</div>
