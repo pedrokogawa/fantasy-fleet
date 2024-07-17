@@ -45,7 +45,7 @@ class BookingsController < ApplicationController
     #canceling is at /bookings/:id/cancel ~ test OK
     #this ONLY sets up the status on CANCEL
     def cancel
-        @booking.status = :canceled
+        @booking.canceled!
         if @booking.save
             redirect_to booking_path(@booking), notice: 'Booking successfully canceled!'
         else
