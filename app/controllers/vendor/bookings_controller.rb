@@ -2,8 +2,9 @@ class Vendor::BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update]
 
   def index
-    @vendor = current_user.id
-    @bookings = Booking.all.where(id: @vendor)
+    @vendor_id = current_user.id
+    @vehicles = Vehicle.all.where(user_id: @vendor_id)
+    @bookings = Booking.all.where(vehicle_id: @vehicles.pluck(:id))
   end
 
   def show
