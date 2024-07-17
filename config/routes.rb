@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
 
   namespace :vendor do 
-    resources :bookings, only: [ :index, :show, :edit, :update ] do
+    resources :bookings, only: [ :index, :show, :update ] do
       member do
         patch :accept
         patch :refuse
