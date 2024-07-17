@@ -1,6 +1,10 @@
 <h1>Hello from Vehicles - SHOW page</h1>
 <div class="container">
-  <%= cl_image_tag @vehicle.photo.key, height: 300, width: 400, crop: :fill %>
+  <% if @vehicle.photo.attached? %>
+    <%= cl_image_tag @vehicle.photo.key, height: 300, width: 400, crop: :fill %>
+  <% else %>
+    <%= image_tag 'https://tork.buzz/__export/1718370996032/sites/tork/img/2024/06/14/image_10.png_1203501776.png' %>
+  <% end %>
   <p><%= @vehicle.name %></p>
   <p><%= @vehicle.category %></p>
   <p><%= @vehicle.seats %></p>
