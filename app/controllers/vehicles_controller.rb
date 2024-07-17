@@ -1,5 +1,6 @@
 class VehiclesController < ApplicationController
     before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
+    skip_before_action :authenticate_user!, only: [:index, :show]
 
     # //root page// has @vehicles ~ test OK 
     def index
