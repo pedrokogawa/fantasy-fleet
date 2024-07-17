@@ -4,17 +4,25 @@
 <%= link_to "My Vehicle Bookings", vendor_bookings_path, class: 'btn btn-primary' %>
 <div class="container">
   <% @vehicles.each do |vehicle| %>
-    <p><%= vehicle.name %></p>
-    <p><%= vehicle.category %></p>
-    <p><%= vehicle.seats %></p>
-    <p><%= vehicle.speed %></p>
-    <p><%= vehicle.price_per_day %></p>
-    <p><%= vehicle.description %></p>
-    <p><%= vehicle.location %></p>
-    <p><%= vehicle.availability %></p>
-    <p><%= vehicle.user_id %></p>
-    <%= link_to "Show details", vehicle_path(vehicle), class: 'btn btn-primary' %>
+    <div class="card-vehicle">
+      <% if vehicle.photo.attached? %>
+        <%= cl_image_tag vehicle.photo.key, height: 300, width: 400, crop: :fill %>
+      <% else %>
+        <%= image_tag 'https://tork.buzz/__export/1718370996032/sites/tork/img/2024/06/14/image_10.png_1203501776.png' %>
+      <% end %>
+      <div class="card-vehicle-infos">
+        <h2><%= vehicle.name %></h2>
+        <p><%= vehicle.description %></p>
+        <!-- <p><%= vehicle.category %></p> -->
+        <!-- <p><%= vehicle.seats %></p> -->
+        <!-- <p><%= vehicle.speed %></p> -->
+        <!-- <p><%= vehicle.price_per_day %></p> -->
+        <!-- <p><%= vehicle.location %></p> -->
+        <!-- <p><%= vehicle.availability %></p> -->
+        <!-- <p><%= vehicle.user_id %></p> -->
+        <%= link_to "Show details", vehicle_path(vehicle), class: 'btn btn-primary' %>
+      </div>
+    </div>
   <% end %>
 </div>
 <%= render "shared/navbar" %>
-
