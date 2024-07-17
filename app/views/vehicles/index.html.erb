@@ -15,6 +15,5 @@
     <%= link_to "Show details", vehicle_path(vehicle), class: 'btn btn-primary' %>
   <% end %>
 </div>
-<%= form_tag(destroy_user_session_path, method: :delete) do %>
-  <%= submit_tag "Sign Out" %>
-<% end %>
+<%= render "shared/navbar" %>
+
