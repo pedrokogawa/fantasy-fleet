@@ -12,6 +12,11 @@ class Vendor::BookingsController < ApplicationController
     redirect_to vendor_bookings_path, notice: "Booking was successfully accepted!"
   end
 
+  def refuse
+    @booking.refused!
+    redirect_to vendor_bookings_path, notice: "Booking was refused!"
+  end
+
   def show
   end
 
