@@ -1,22 +1,27 @@
-<div class="container">
-  <% if @vehicle.photo.attached? %>
-    <%= cl_image_tag @vehicle.photo.key, height: 300, width: 400, crop: :fill %>
-  <% else %>
-    <%= image_tag 'https://tork.buzz/__export/1718370996032/sites/tork/img/2024/06/14/image_10.png_1203501776.png' %>
-  <% end %>
-  <p><%= @vehicle.name %></p>
-  <p><%= @vehicle.category %></p>
-  <p><%= @vehicle.seats %></p>
-  <p><%= @vehicle.speed %></p>
-  <p><%= @vehicle.price_per_day %></p>
-  <p><%= @vehicle.description %></p>
-  <p><%= @vehicle.location %></p>
-  <p><%= @vehicle.availability %></p>
-  <p><%= @vehicle.user_id %></p>
-</div>
-<% if current_user && @vehicle.user_id == current_user.id %>
-  <div class="container">
-    <%= link_to "Edit this vehicle", edit_vehicle_path, class: "btn btn-success" %>
-    <%= link_to "Delete vehicle", vehicle_path, class: "btn btn-danger", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+<div class="row m-5">
+  <div class="col-8">
+    <% if @vehicle.photo.attached? %>
+      <%= cl_image_tag @vehicle.photo.key, height: 300, width: 400, crop: :fill %>
+    <% else %>
+      <%= image_tag 'https://tork.buzz/__export/1718370996032/sites/tork/img/2024/06/14/image_10.png_1203501776.png' %>
+    <% end %>
+    <p><%= @vehicle.name %></p>
+    <p><%= @vehicle.category %></p>
+    <p><%= @vehicle.seats %></p>
+    <p><%= @vehicle.speed %></p>
+    <p><%= @vehicle.price_per_day %></p>
+    <p><%= @vehicle.description %></p>
+    <p><%= @vehicle.location %></p>
+    <p><%= @vehicle.availability %></p>
+    <p><%= @vehicle.user_id %></p>
+    <% if current_user && @vehicle.user_id == current_user.id %>
+      <div class="container">
+        <%= link_to "Edit this vehicle", edit_vehicle_path, class: "btn btn-success" %>
+        <%= link_to "Delete vehicle", vehicle_path, class: "btn btn-danger", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+  <div class="col-4">
+    <%= render 'bookings/new', booking: @booking, vehicle: @vehicle %>
+  </div>
+</div>

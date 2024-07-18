@@ -3,7 +3,7 @@
   <div class="form-inputs">
     <%= f.input :start_date %>
     <%= f.input :end_date %>
-    <%= f.collection_select :vehicle_id, Vehicle.where.not(user_id: current_user.id).map { |vehicle| [vehicle.name, vehicle.id] }, :last, :first, prompt: "Select a vehicle" %>
+    <%= f.input :vehicle_id %>
   </div>
   <div class="form-actions">
     <%= f.button :submit %>
