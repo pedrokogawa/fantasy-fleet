@@ -8,6 +8,7 @@ class BookingsController < ApplicationController
     end
 
     def show
+        
     end
 
     #new form is at /bookings/new ~ test OK
