@@ -1,4 +1,3 @@
-<h1>Hello from Vehicles - SHOW page</h1>
 <div class="container">
   <% if @vehicle.photo.attached? %>
     <%= cl_image_tag @vehicle.photo.key, height: 300, width: 400, crop: :fill %>
