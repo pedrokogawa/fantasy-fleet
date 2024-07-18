@@ -17,7 +17,7 @@
               <p><strong>Location:</strong> <%= @vehicle.location %></p>
             </div>
             <div class="col-5">
-              <p><strong>Daily Price:</strong> <%= @vehicle.price_per_day %></p>
+              <p><strong>Daily Price:</strong> <%= number_to_currency(@vehicle.price_per_day, unit: '¥', delimiter: ',', precision:0) %></p>
               <p><strong>Seats:</strong> <%= @vehicle.seats %></p>
               <p><strong>Speed:</strong> <%= @vehicle.speed %></p>
             </div>
@@ -40,11 +40,13 @@
           </div>
         </div>
       </div>
-      <div class="col-4">
-        <div class="ms-5">
-          <%= render 'bookings/new', booking: @booking, vehicle: @vehicle %>
+      <% if current_user && @vehicle.user_id != current_user.id %>
+        <div class="col-4">
+          <div class="ms-5">
+            <%= render 'bookings/new', booking: @booking, vehicle: @vehicle %>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
