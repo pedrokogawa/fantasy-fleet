@@ -15,7 +15,7 @@
   <p><%= @vehicle.availability %></p>
   <p><%= @vehicle.user_id %></p>
 </div>
-<% if @vehicle.user_id == current_user.id %>
+<% if current_user && @vehicle.user_id == current_user.id %>
   <div class="container">
     <%= link_to "Edit this vehicle", edit_vehicle_path, class: "btn btn-success" %>
     <%= link_to "Delete vehicle", vehicle_path, class: "btn btn-danger", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
