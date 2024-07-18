@@ -37,140 +37,170 @@
       </div>
     </nav>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
-      <!-- Container wrapper -->
+    <!-- NavbarNavbarNavbarNavbarNavbarNavbarNavbarNavbarNavbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
       <div class="container-fluid">
-        <!-- Toggle button -->
-        <button data-mdb-button-init class="navbar-toggler" type="button" data-mdb-collapse-init aria-label="Toggle navigation"
-        aria-controls="navbarSupportedContent" aria-expanded="false" data-mdb-target="#navbarSupportedContent" >
-          <i class="fas fa-bars"></i>
-        </button>
-        <!-- Collapsible wrapper -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="justify-content: center;">
-          <ul class="navbar-nav mb-2 mb-lg-0"></ul>
-          <!-- Icons -->
-          <ul class="navbar-nav d-flex flex-row me-1">
-            <li class="nav-item me-3 me-lg-0">
-              <a class="nav-link mx-1" href="#"><i class="fa-solid fa-car"></i></a>
+        <a class="navbar-brand" href="<%= root_path %>"><img src="https://lh3.googleusercontent.com/drive-viewer/AKGpihbPMJs7lZWGlk93eXwjxN_acj4NOmLjmGmgpyo9eQMy1ely4qN4LNoajWlm6tdTmy727AZPZ9B_TBdFiqV9XjwWstpxS09Q8VI=w2548-h1257-rw-v1" alt="..." height="40"></a>
+        <form class="d-flex">
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo03"></div>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="">Pricing</a>
             </li>
-            <li class="nav-item me-3 me-lg-0">
-              <a class="nav-link mx-1" href="#"><i class="fa-solid fa-motorcycle"></i></a>
+            <li class="nav-item">
+              <a class="nav-link" href="">Solutions</a>
             </li>
-            <li class="nav-item me-3 me-lg-0">
-              <a class="nav-link mx-1" href="#"><i class="fa-solid fa-truck-monster"></i></a>
+            <li class="nav-item">
+              <a class="nav-link" href="">Community</a>
             </li>
-            <li class="nav-item me-3 me-lg-0">
-              <a class="nav-link mx-1" href="#"><i class="fa-solid fa-truck"></i></a>
+            <li class="nav-item">
+              <a class="nav-link" href="">Resources</a>
             </li>
-            <li class="nav-item me-3 me-lg-0">
-              <a class="nav-link mx-1" href="#"><i class="fa-solid fa-van-shuttle"></i></a>
-            </li>
-            <li class="nav-item me-3 me-lg-0">
-              <a class="nav-link mx-1" href="#"><i class="fa-solid fa-sailboat"></i></a>
-            </li>
-            <li class="nav-item me-3 me-lg-0">
-              <a class="nav-link mx-1" href="#"><i class="fa-solid fa-plane"></i></a>
-            </li>
-            <li class="nav-item me-3 me-lg-0">
-              <a class="nav-link mx-1" href="#"><i class="fa-solid fa-shuttle-space"></i></a>
+            <li class="nav-item">
+              <a class="nav-link" href="">Contact</a>
             </li>
           </ul>
-        </div>
+          <button class="btn btn-light me-3" type="submit">Sign In</button>
+          <button class="btn btn-dark" type="submit">Register</button>
+        </form>
       </div>
-      <!-- Container wrapper -->
-    </nav>
-    <!-- Navbar -->
-    <!-- Navbar -->
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
-    <!-- Footer -->
-    <footer class="text-center text-lg-start bg-body-tertiary text-muted">
-      <section class="container justify-text-center justify-content-lg-between p-4 border-bottom">
-        <span>Home</span>
-      </section>
-      <!-- Section: Links  -->
-      <section class="">
-        <div class="container text-center text-md-start mt-5">
-          <!-- Grid row -->
-          <div class="row mt-3">
-            <!-- Grid column -->
-            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-              <!-- Content -->
-              <h6 class="text-uppercase fw-bold mb-4">
-                <i class="fas fa-gem me-3"></i>Fantasy Fleet
-              </h6>
-              <p>
-                Website description here... Lorem ipsum
-                dolor sit amet, consectetur adipisicing elit.
-              </p>
-            </div>
-            <!-- Grid column -->
-            <!-- Grid column -->
-            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-              <!-- Links -->
-              <h6 class="text-uppercase fw-bold mb-4">
-                Products
-              </h6>
-              <p>
-                <a href="#!" class="text-reset">Angular</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">React</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Vue</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Laravel</a>
-              </p>
-            </div>
-            <!-- Grid column -->
-            <!-- Grid column -->
-            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-              <!-- Links -->
-              <h6 class="text-uppercase fw-bold mb-4">
-                Useful links
-              </h6>
-              <p>
-                <a href="#!" class="text-reset">Pricing</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Settings</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Orders</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Help</a>
-              </p>
-            </div>
-            <!-- Grid column -->
-            <!-- Grid column -->
-            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-              <!-- Links -->
-              <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-              <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
-              <p>
-                <i class="fas fa-envelope me-3"></i>
-                info@fantasyfleet.com
-              </p>
-              <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-              <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
-            </div>
-            <!-- Grid column -->
+    </div>
+  </nav>
+  <!-- NavbarNavbarNavbarNavbarNavbarNavbarNavbarNavbarNavbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <button data-mdb-button-init class="navbar-toggler" type="button" data-mdb-collapse-init aria-label="Toggle navigation"
+        aria-controls="navbarSupportedContent" aria-expanded="false" data-mdb-target="#navbarSupportedContent" >
+        <i class="fas fa-bars"></i>
+      </button>
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent" style="justify-content: center;">
+        <ul class="navbar-nav mb-2 mb-lg-0"></ul>
+        <!-- Icons -->
+        <ul class="navbar-nav d-flex flex-row me-1">
+          <li class="nav-item me-3 me-lg-0">
+            <a class="nav-link mx-1" href="#"><i class="fa-solid fa-car"></i></a>
+          </li>
+          <li class="nav-item me-3 me-lg-0">
+            <a class="nav-link mx-1" href="#"><i class="fa-solid fa-motorcycle"></i></a>
+          </li>
+          <li class="nav-item me-3 me-lg-0">
+            <a class="nav-link mx-1" href="#"><i class="fa-solid fa-truck-monster"></i></a>
+          </li>
+          <li class="nav-item me-3 me-lg-0">
+            <a class="nav-link mx-1" href="#"><i class="fa-solid fa-truck"></i></a>
+          </li>
+          <li class="nav-item me-3 me-lg-0">
+            <a class="nav-link mx-1" href="#"><i class="fa-solid fa-van-shuttle"></i></a>
+          </li>
+          <li class="nav-item me-3 me-lg-0">
+            <a class="nav-link mx-1" href="#"><i class="fa-solid fa-sailboat"></i></a>
+          </li>
+          <li class="nav-item me-3 me-lg-0">
+            <a class="nav-link mx-1" href="#"><i class="fa-solid fa-plane"></i></a>
+          </li>
+          <li class="nav-item me-3 me-lg-0">
+            <a class="nav-link mx-1" href="#"><i class="fa-solid fa-shuttle-space"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+  <!-- Navbar -->
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <%= yield %>
+  <!-- Footer -->
+  <footer class="text-center text-lg-start bg-body-tertiary text-muted">
+    <section class="container justify-text-center justify-content-lg-between p-4 border-bottom">
+      <span>Home</span>
+    </section>
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              <i class="fas fa-gem me-3"></i>Fantasy Fleet
+            </h6>
+            <p>
+              Website description here... Lorem ipsum
+              dolor sit amet, consectetur adipisicing elit.
+            </p>
           </div>
-          <!-- Grid row -->
+          <!-- Grid column -->
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Products
+            </h6>
+            <p>
+              <a href="#!" class="text-reset">Angular</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">React</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Vue</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Laravel</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Useful links
+            </h6>
+            <p>
+              <a href="#!" class="text-reset">Pricing</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Settings</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Orders</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Help</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+            <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+            <p>
+              <i class="fas fa-envelope me-3"></i>
+              info@fantasyfleet.com
+            </p>
+            <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
+            <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+          </div>
+          <!-- Grid column -->
         </div>
-      </section>
-      <!-- Section: Links  -->
-      <footer class="text-center bg-body-tertiary">
-        <!-- Grid container -->
-        <div class="container pt-4 border-top">
-          <!-- Section: Social media -->
-          <section class="mb-4">
-            <!-- Facebook -->
-            <a
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+    <footer class="text-center bg-body-tertiary">
+      <!-- Grid container -->
+      <div class="container pt-4 border-top">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <!-- Facebook -->
+          <a
             data-mdb-ripple-init
             class="btn btn-link btn-floating btn-lg text-body m-1"
             href="#!"
@@ -178,8 +208,8 @@
             data-mdb-ripple-color="dark"
             ><i class="fab fa-facebook-f"></i
           ></a>
-            <!-- Twitter -->
-            <a
+          <!-- Twitter -->
+          <a
             data-mdb-ripple-init
             class="btn btn-link btn-floating btn-lg text-body m-1"
             href="#!"
@@ -187,8 +217,8 @@
             data-mdb-ripple-color="dark"
             ><i class="fab fa-twitter"></i
           ></a>
-            <!-- Google -->
-            <a
+          <!-- Google -->
+          <a
             data-mdb-ripple-init
             class="btn btn-link btn-floating btn-lg text-body m-1"
             href="#!"
@@ -196,8 +226,8 @@
             data-mdb-ripple-color="dark"
             ><i class="fab fa-google"></i
           ></a>
-            <!-- Instagram -->
-            <a
+          <!-- Instagram -->
+          <a
             data-mdb-ripple-init
             class="btn btn-link btn-floating btn-lg text-body m-1"
             href="#!"
@@ -205,8 +235,8 @@
             data-mdb-ripple-color="dark"
             ><i class="fab fa-instagram"></i
           ></a>
-            <!-- Linkedin -->
-            <a
+          <!-- Linkedin -->
+          <a
             data-mdb-ripple-init
             class="btn btn-link btn-floating btn-lg text-body m-1"
             href="#!"
@@ -214,8 +244,8 @@
             data-mdb-ripple-color="dark"
             ><i class="fab fa-linkedin"></i
           ></a>
-            <!-- Github -->
-            <a
+          <!-- Github -->
+          <a
             data-mdb-ripple-init
             class="btn btn-link btn-floating btn-lg text-body m-1"
             href="#!"
@@ -223,17 +253,17 @@
             data-mdb-ripple-color="dark"
             ><i class="fab fa-github"></i
           ></a>
-          </section>
-          <!-- Section: Social media -->
-        </div>
-        <!-- Grid container -->
-        <!-- Copyright -->
-        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-          © 2024 Copyright:
-          <a class="text-reset fw-bold" href="https://lewagon.com/">FantasyFleet.com</a>
-        </div>
-        <!-- Copyright -->
-      </footer>
-      <!-- Footer -->
-    </body>
-  </html>
+        </section>
+        <!-- Section: Social media -->
+      </div>
+      <!-- Grid container -->
+      <!-- Copyright -->
+      <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2024 Copyright:
+        <a class="text-reset fw-bold" href="https://lewagon.com/">FantasyFleet.com</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+  </body>
+</html>
