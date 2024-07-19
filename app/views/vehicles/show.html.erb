@@ -23,9 +23,17 @@
             </div>
             <div class="col-2">
               <% if @vehicle.availability == 'available' %>
-                <span class="badge bg-success fs-5 fw-light">Available</span>
+                <div data-controller="status-style">
+                  <span data-status-style-target="statusElement" data-status="<%= @vehicle.availability %>">
+                    Available
+                  </span>
+                </div>
               <% else %>
-                <span class="badge bg-dark fs-5">Unavailable</span>
+                <div data-controller="status-style">
+                  <span data-status-style-target="statusElement" data-status="<%= @vehicle.availability %>">
+                    Unavailable
+                  </span>
+                </div>
               <% end %>
             </div>
             <div class="col-12">
