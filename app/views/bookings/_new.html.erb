@@ -6,8 +6,12 @@
       <p><strong><%= @vehicle.name %></strong></p>
       <%= f.hidden_field :vehicle_id, value: @vehicle.id %>
     </div>
-    <%= f.input :start_date %>
-    <%= f.input :end_date %>
+    <%= f.input :start_date,
+        as: :string,
+        input_html: { data: { controller: "datepicker" } } %>
+    <%= f.input :end_date,
+        as: :string,
+        input_html: { data: { controller: "datepicker" } } %>
   </div>
   <div class="form-actions">
     <%= f.button :submit, class: 'btn btn-dark w-100' %>
