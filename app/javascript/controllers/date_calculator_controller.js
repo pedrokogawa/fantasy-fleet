@@ -14,7 +14,7 @@ export default class extends Controller {
 
     if (startDate && endDate) {
       const timeDiff = endDate - startDate;
-      const daysDiff = (timeDiff / (1000 * 60 * 60 * 24)) + 1;
+      const daysDiff = (timeDiff / (1000 * 60 * 60 * 24) + 1);
 
       this.dayCountTarget.textContent = `Number of days: ${Math.floor(daysDiff)}`;
       this.updateTotalPrice(Math.floor(daysDiff));
