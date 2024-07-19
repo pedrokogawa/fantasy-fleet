@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ['startDate', 'endDate', 'dayCount', 'totalPrice'];
 
   connect() {
-    this.updateDayCount(); // Initialize with current values if present
+    this.updateDayCount();
   }
 
   updateDayCount() {
@@ -25,7 +25,6 @@ export default class extends Controller {
   }
 
   updateTotalPrice(daysDiff) {
-    // Get the vehicle price per day from a data attribute or other source
     const pricePerDay = parseFloat(this.element.dataset.pricePerDay);
 
     if (pricePerDay && daysDiff >= 0) {
@@ -38,7 +37,6 @@ export default class extends Controller {
 
   createDateFromInput(dateInput) {
     if (dateInput) {
-      // Create a Date object directly from the dateInput string
       return new Date(dateInput);
     }
     return null;

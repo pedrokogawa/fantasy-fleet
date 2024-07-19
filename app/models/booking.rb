@@ -8,6 +8,10 @@ class Booking < ApplicationRecord
 
   #automatically calculates # of days and TOTAL PRICE
   def total_price_calculation
-    self.total_price = ((end_date - start_date).to_i + 1) * vehicle.price_per_day
+    if end_date.nil? || start_date.nil? || start_date < Date.today
+      self.total_price = 0
+    else
+      self.total_price = ((end_date - start_date).to_i + 1) * vehicle.price_per_day
+    end
   end
 end
