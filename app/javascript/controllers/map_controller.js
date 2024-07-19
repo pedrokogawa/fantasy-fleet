@@ -10,10 +10,8 @@ export default class extends Controller {
 	};
 
 	connect() {
-		console.log("API Key:", typeof this.markerLat);
 		mapboxgl.accessToken =
 			"pk.eyJ1IjoicGtvZ2F3YSIsImEiOiJjbHlzazd6eWEwZ252MnFzNmFmM21uMWdvIn0.RjcLs7simKtubr8Y8btdzw";
-
 		this.map = new mapboxgl.Map({
 			container: this.element,
 			style: "mapbox://styles/mapbox/streets-v11",

@@ -5,6 +5,13 @@ class VehiclesController < ApplicationController
     # //root page// has @vehicles ~ test OK 
     def index
         @vehicles = Vehicle.all
+        @markers = @vehicles.geocoded.map do |vehicle|
+            {
+            lat: vehicle.latitude,
+            lng: vehicle.longitude,
+            info_window_html: render_to_string(partial: "info_window", locals: {vehicle: vehicle})
+            }
+        end
     end
     
     # show has @vehicle ~ test OK 
