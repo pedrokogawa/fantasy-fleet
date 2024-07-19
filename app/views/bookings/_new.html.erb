@@ -6,10 +6,10 @@
       <p><strong><%= @vehicle.name %></strong></p>
       <%= f.hidden_field :vehicle_id, value: @vehicle.id %>
     </div>
-    <%= f.input :start_date %>
-    <%= f.input :end_date %>
+    <%= f.input :start_date, disabled: @vehicle.availability == 'unavailable' %>
+    <%= f.input :end_date, disabled: @vehicle.availability == 'unavailable' %>
   </div>
   <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-dark w-100' %>
+    <%= f.button :submit, class: 'btn btn-dark w-100', disabled: @vehicle.availability == 'unavailable' %>
   </div>
 <% end %>
