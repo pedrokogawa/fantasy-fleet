@@ -1,15 +1,19 @@
 <h1>Booking form</h1>
-<%= simple_form_for @booking do |f| %>
+<%= simple_form_for @booking, html: { data: { controller: 'date-calculator', price_per_day: @vehicle.price_per_day } } do |f| %>
   <div class="form-inputs">
     <div class="mb-3">
       <label class="form-label">Vehicle:</label>
-      <p><strong><%= @vehicle.name %></strong></p>
+      <p class="fs-3"><strong><%= @vehicle.name %></strong></p>
       <%= f.hidden_field :vehicle_id, value: @vehicle.id %>
     </div>
-    <%= f.input :start_date %>
-    <%= f.input :end_date %>
+    <!-- Start Date Input -->
+    <%= f.input :start_date, as: :date, html5: true, disabled: @vehicle.availability == 'unavailable', input_html: { data: { date_calculator_target: 'startDate', action: 'change->date-calculator#updateDayCount' } } %>
+    <!-- End Date Input -->
+    <%= f.input :end_date, as: :date, html5: true, disabled: @vehicle.availability == 'unavailable', input_html: { data: { date_calculator_target: 'endDate', action: 'change->date-calculator#updateDayCount' } } %>
+    <p data-date-calculator-target="dayCount" class="text-muted">Number of days: </p>
+    <p data-date-calculator-target="totalPrice" class="fw-bold">Total price:</p>
   </div>
   <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-dark w-100' %>
+    <%= f.button :submit, class: 'btn btn-dark w-100', disabled: @vehicle.availability == 'unavailable' %>
   </div>
 <% end %>
