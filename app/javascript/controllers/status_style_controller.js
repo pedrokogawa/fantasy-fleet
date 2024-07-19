@@ -55,6 +55,22 @@ export default class extends Controller {
 				"border-warning",
 				"text-warning"
 			);
+		} else if (this.statusElementTarget.dataset.status === "available") {
+			this.statusElementTarget.classList.add(
+				"border",
+				"border-success",
+				"text-success",
+				"p-1",
+				"rounded"
+			);
+		} else if (this.statusElementTarget.dataset.status === "unavailable") {
+			this.statusElementTarget.classList.add(
+				"border",
+				"border-danger",
+				"text-danger",
+				"p-1",
+				"rounded"
+			);
 		}
 	}
 }
