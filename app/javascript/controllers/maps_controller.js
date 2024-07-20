@@ -5,13 +5,15 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 // Connects to data-controller="maps"
 export default class extends Controller {
 	static values = {
+		apiKey: String,
 		markers: Array,
 	};
 
 	connect() {
+		console.log(this.apiKeyValue);
 		const modalElement = document.getElementById("map-modal");
-		mapboxgl.accessToken =
-			"pk.eyJ1IjoicGtvZ2F3YSIsImEiOiJjbHlzazd6eWEwZ252MnFzNmFmM21uMWdvIn0.RjcLs7simKtubr8Y8btdzw";
+		mapboxgl.accessToken = this.apiKeyValue;
+		console.log(mapboxgl.accessToken);
 		modalElement.addEventListener("shown.bs.modal", () => {
 			setTimeout(() => {
 				this.map.resize();
