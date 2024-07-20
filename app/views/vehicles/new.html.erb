@@ -29,7 +29,8 @@
         </div>
         <div class="row">
           <div class="col">
-            <%= f.input :location, input_html: { maxlength: 100 } %>
+            <%= f.input :location, input_html: { maxlength: 100 },  input_html: {data: {location_autocomplete_new_target: "location"}, class: "d-none"},
+            wrapper_html: {data: {controller: "location-autocomplete-new", location_autocomplete_new_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
           </div>
           <div class="col">
             <%= f.input :availability, as: :select, collection: [['Available', 'available'], ['Unavailable', 'unavailable']] %>
