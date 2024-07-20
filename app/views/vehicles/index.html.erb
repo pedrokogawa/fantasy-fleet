@@ -42,8 +42,9 @@
               <strong><%= vehicle.name %></strong>
               <p class="card-text">
                 <%= vehicle.location %><br>
-                <%= vehicle.category %>, <%= vehicle.seats %> seats, <%= vehicle.speed %> km/h<br>
-                <strong>¥<%= vehicle.price_per_day %> JPY</strong> day
+                <%= vehicle.category %> | <%= number_to_currency(vehicle.speed, unit: "", delimiter: ",", precision: 0) %>  km/h<br>
+                <%= vehicle.seats %> <i class="fa-solid fa-user-group"></i><br>
+                <strong><%= number_to_currency(vehicle.price_per_day, unit: "¥", delimiter: ",", precision: 0) %> JPY</strong> day
               </p>
             </div>
           </div>
@@ -67,6 +68,6 @@
     </div>
   </div>
 </div>
-<button type="button" class="border-0" data-bs-toggle="modal" data-bs-target="#map-modal">
-  <i class="fa-solid fa-earth-americas fa-2xl" style="color: #196aa9;"></i>
+<button type="button" class="border-0 sticky-map-button" data-bs-toggle="modal" data-bs-target="#map-modal">
+  <i class="fa-solid fa-map-location-dot fa-2xl"></i>
 </button>

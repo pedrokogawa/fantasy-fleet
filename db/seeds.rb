@@ -7,10 +7,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-require 'faker'
-puts "Destroying all Vehicles"
-Vehicle.destroy_all
-
 
 # 10.times do
 #   Vehicle.create!(
@@ -27,294 +23,360 @@ Vehicle.destroy_all
 # puts "created models"
 
 # Creation of users.
-# User.create!(
-#   [
-#     {
-#       email: "john@gmail.com",
-#       first_name: "John",
-#       last_name: "Doe",
-#       nickname: nil,
-#       license_number: nil,
-#       birthday: "1991-09-09",
-#       password: "123456",
-#       password_confirmation: "123456"
-#     },
-#     {
-#       email: "marcel@gmail.com",
-#       first_name: "Marcel",
-#       last_name: "Ribeiro",
-#       nickname: nil,
-#       license_number: nil,
-#       birthday: "1991-01-01",
-#       password: "123456",
-#       password_confirmation: "123456"
-#     },
-#     {
-#       email: "pedro@gmail.com",
-#       first_name: "Pedro",
-#       last_name: "Henrique",
-#       nickname: "",
-#       license_number: nil,
-#       birthday: "2024-07-16",
-#       password: "123456",
-#       password_confirmation: "123456"
-#     },
-#     {
-#       email: "ken@gmail.com",
-#       first_name: "Ken",
-#       last_name: "San",
-#       nickname: "",
-#       license_number: nil,
-#       birthday: "1979-07-16",
-#       password: "123456",
-#       password_confirmation: "123456"
-#     },
-#     {
-#       email: "maria@gmail.com",
-#       first_name: "Maria",
-#       last_name: "Helena",
-#       nickname: "",
-#       license_number: nil,
-#       birthday: "1978-10-16",
-#       password: "123456",
-#       password_confirmation: "123456"
-#     },
-#     {
-#       email: "rose@gmail.com",
-#       first_name: "Rose",
-#       last_name: "San",
-#       nickname: "TheRose",
-#       license_number: 43214321,
-#       birthday: "2004-07-16",
-#       password: "123456",
-#       password_confirmation: "123456"
-#     }
-#   ]
-# )
- 
-# Creating 20 vehicles without photos
-Vehicle.create!(
+puts "Deleting Previous Users"
+User.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!('users')
+puts "Deleted Users"
+puts "Creating New users..."
+User.create!(
   [
     {
-      name: "Kaneda's Bike",
-      category: "Motorcycle",
-      seats: 2,
-      speed: 243,
-      price_per_day: 50000,
-      description: "Kaneda's iconic red motorcycle from the anime \"Akira,\" known for its sleek design and incredible speed. A symbol of the cyberpunk genre and futuristic aesthetics.",
-      location: Faker::Address.city,
-      availability: "available",
-      user_id: 3
-    },
+      email: "admin@gmail.com",
+      first_name: "Admin",
+      last_name: "admin",
+      nickname: "admin",
+      license_number: nil,
+      birthday: "1991-09-09",
+      password: "123456",
+      password_confirmation: "123456"
+},
     {
-      name: "Batmobile",
-      category: "Car",
-      seats: 2,
-      speed: 350,
-      price_per_day: 100000,
-      description: "The Batmobile is Batman's primary mode of transportation, equipped with advanced technology, weapons, and high-speed capabilities. It is a symbol of Batman's fight against crime in Gotham City.",
-      location: Faker::Address.city,
-      availability: "available",
-      user_id: 3
-    },
+      email: "penn@gmail.com",
+      first_name: "Penn",
+      last_name: "Junior",
+      nickname: "quan",
+      license_number: "Jwagon000",
+      birthday: "1997-01-13",
+      password: "123456",
+      password_confirmation: "123456"
+},
     {
-      name: "Gantz Monobike",
-      category: "Motorcycle",
-      seats: 1,
-      speed: 300,
-      price_per_day: 75000,
-      description: "A Gantz Bike, ou Gantz Monobike, é uma motocicleta futurista de uma única roda usada pelos personagens do anime e mangá \"Gantz\". Conhecida por sua alta velocidade e design inovador, é uma peça-chave no arsenal dos personagens.",
-      location: Faker::Address.city,
-      availability: "available",
-      user_id: 3
-    },
+      email: "pedro@gmail.com",
+      first_name: "Pedro",
+      last_name: "Kogawa",
+      nickname: "Henrique",
+      license_number: "pedro000",
+      birthday: "2024-07-16",
+      password: "123456",
+      password_confirmation: "123456"
+},
     {
-      name: "Capsule Corp Spaceship",
-      category: "Spaceship",
-      seats: 4,
-      speed: 50000,
-      price_per_day: 200000,
-      description: "The Capsule Corp Spaceship, also known as the Capsule Corp Orb, is a large spacecraft used by Goku in the Dragon Ball series for training and interstellar travel. It features advanced technology and a gravity chamber for intense training sessions.",
-      location: Faker::Address.city,
-      availability: "available",
-      user_id: 3
-    },
+      email: "shingie@gmail.com",
+      first_name: "Shingie",
+      last_name: "San",
+      nickname: "Shin",
+      license_number: "342352",
+      birthday: "1979-07-16",
+      password: "123456",
+      password_confirmation: "123456"
+},
     {
-      name: "Catbus",
-      category: "Bus",
-      seats: 12,
-      speed: 100,
-      price_per_day: 150000,
-      description: "The Catbus is a magical, living bus from Studio Ghibli's \"My Neighbor Totoro.\" It has the appearance of a giant cat and can travel quickly and magically, providing a whimsical and unique transportation experience. It is known for its ability to appear and disappear, and for its friendly, helpful nature.",
-      location: Faker::Address.city,
-      availability: "available",
-      user_id: 3
-    },
-    {
-      name: "Flintmobile",
-      category: "Car",
-      seats: 4,
-      speed: 15,
-      price_per_day: 2000,
-      description: "The Flintmobile is the iconic foot-powered car from the animated series \"The Flintstones.\" It features a stone chassis and wooden roller wheels, and is powered by the feet of its passengers. This unique vehicle is a symbol of the prehistoric lifestyle of the Flintstones and their neighbors.",
-      location: Faker::Address.city,
-      availability: "available",
-      user_id: 1
-    },
-    {
-      name: "Test Vehicle",
-      category: "Car",
-      seats: 1,
-      speed: 100,
-      price_per_day: 1000,
-      description: "A test vehicle",
-      location: Faker::Address.city,
-      availability: "available",
-      user_id: 1
-    },
-    {
-      name: "Ecto-1",
-      category: "Car",
-      seats: 4,
-      speed: 120,
-      price_per_day: 8000,
-      description: "The Ecto-1 is the iconic car from Ghostbusters, equipped with various ghost-hunting gear and known for its distinctive siren.",
-      location: Faker::Address.city,
-      availability: "available",
-      user_id: 3
-    },
-    {
-      name: "Luigi Kart",
-      category: "Go-Kart",
-      seats: 1,
-      speed: 80,
-      price_per_day: 4000,
-      description: "Luigi's go-kart from the Mario Kart series, known for its agility and balanced performance.",
-      location: Faker::Address.city,
-      availability: "available",
-      user_id: 3
-    },
-    {
-      name: "Mario Kart",
-      category: "Go-Kart",
-      seats: 1,
-      speed: 85,
-      price_per_day: 4500,
-      description: "Mario's go-kart from the Mario Kart series, famous for its speed and versatility.",
-      location: Faker::Address.city,
-      availability: "available",
-      user_id: 3
-    },
-    {
-      name: "Lightning McQueen",
-      category: "Car",
-      seats: 2,
-      speed: 200,
-      price_per_day: 15000,
-      description: "Lightning McQueen, the famous race car from the movie Cars, known for his speed and competitive spirit.",
-      location: Faker::Address.city,
-      availability: "available",
-      user_id: 3
-    },
-    {
-      name: "Millennium Falcon",
-      category: "Spaceship",
-      seats: 6,
-      speed: 1050,
-      price_per_day: 500000,
-      description: "The Millennium Falcon is a legendary spaceship from Star Wars, piloted by Han Solo and known for its incredible speed and agility.",
-      location: Faker::Address.city,
-      availability: "available",
-      user_id: 3
-    },
-    {
-      name: "Flying Nimbus",
-      category: "Cloud",
-      seats: 1,
-      speed: 300,
-      price_per_day: 10000,
-      description: "The Flying Nimbus is a magical cloud from Dragon Ball, used by Goku for swift and nimble travel.",
-      location: Faker::Address.city,
-      availability: "available",
-      user_id: 3
-    },
-    {
-      name: "Going Merry",
-      category: "Ship",
-      seats: 10,
-      speed: 30,
-      price_per_day: 200000,
-      description: "The Going Merry is the first ship of the Straw Hat Pirates in One Piece, known for its distinctive figurehead and adventurous voyages.",
-      location: Faker::Address.city,
-      availability: "available",
-      user_id: 3
-    },
-    {
-      name: "Optimus Prime",
-      category: "Truck",
-      seats: 2,
-      speed: 120,
-      price_per_day: 100000,
-      description: "Optimus Prime is the leader of the Autobots in Transformers, able to transform from a truck to a powerful robot.",
-      location: Faker::Address.city,
-      availability: "available",
-      user_id: 3
-    },
-    {
-      name: "Mystery Machine",
-      category: "Van",
-      seats: 5,
-      speed: 90,
-      price_per_day: 6000,
-      description: "The Mystery Machine is the van used by the Scooby-Doo gang to travel and solve mysteries.",
-      location: Faker::Address.city,
-      availability: "available",
-      user_id: 3
-    },
-    {
-      name: "Mach 5",
-      category: "Car",
-      seats: 2,
-      speed: 300,
-      price_per_day: 20000,
-      description: "The Mach 5 is Speed Racer's car, equipped with various gadgets and known for its incredible speed.",
-      location: Faker::Address.city,
-      availability: "available",
-      user_id: 3
-    },
-    {
-      name: "War Rig",
-      category: "Truck",
-      seats: 2,
-      speed: 100,
-      price_per_day: 150000,
-      description: "The War Rig is the massive truck driven by Furiosa in Mad Max: Fury Road, designed for combat and survival in the wasteland.",
-      location: Faker::Address.city,
-      availability: "available",
-      user_id: 3
-    },
-    {
-      name: "X-Wing",
-      category: "Spaceship",
-      seats: 1,
-      speed: 1050,
-      price_per_day: 450000,
-      description: "The X-Wing is a starfighter used by the Rebel Alliance in Star Wars, known for its speed and combat capabilities.",
-      location: Faker::Address.city,
-      availability: "available",
-      user_id: 3
-    },
-    {
-      name: "Y-Wing",
-      category: "Spaceship",
-      seats: 1,
-      speed: 900,
-      price_per_day: 400000,
-      description: "The Y-Wing is a bomber used by the Rebel Alliance in Star Wars, known for its durability and heavy firepower.",
-      location: Faker::Address.city,
-      availability: "available",
-      user_id: 3
-    }
+      email: "rei@gmail.com",
+      first_name: "Rei",
+      last_name: "Zhang",
+      nickname: "ReiSan",
+      license_number: "845902",
+      birthday: "1978-10-16",
+      password: "123456",
+      password_confirmation: "123456"
+}
   ]
 )
 
+# Creating 20 vehicles without photos
+puts "Destroying all Vehicles"
+Vehicle.destroy_all
+puts "Destroyed Vehicles"
+
+# !!!!! BOOKINGS DELETE ALL !!!!!! 
+puts "Deleting all Bookings"
+Booking.destroy_all
+puts "Deleted Bookings."
+
+puts "Seeding first 20 vehicles..."
+vehicle1 = Vehicle.create!(
+  name: "BumbleBee",
+  category: "Car",
+  seats: 4,
+  speed: 350,
+  price_per_day: 120000,
+  description:"Rent the iconic Bumblebee car, a stunning 2010 Chevrolet Camaro, perfect for any occasion. This bright yellow muscle car with bold black racing stripes offers a sleek, modern design combined with powerful performance. Its aggressive stance and aerodynamic lines turn heads wherever it goes.",
+  location: "Horikiri, Metropolitan Road 449, Yanagihara 1-chome, Yanagihara, Adachi, Tokyo, 120-0023, Japan",
+  availability: "available",
+  user_id: 1
+)
+image1 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721444766/Lamborghini_Urus_qr1xw4.jpg")
+puts "created #{vehicle1.name}"
+vehicle2 = Vehicle.create!(
+
+  name: "BatMotor",
+  category: "Bicycle",
+  seats: 2,
+  speed: 250,
+  price_per_day: 90000,
+  description: "Powered by a high-performance engine, the Batman Bike delivers an exhilarating ride with exceptional speed, agility, and handling. Its cutting-edge technology includes a state-of-the-art navigation system, advanced lighting, and a robust braking system to ensure a safe and thrilling experience.",
+  location: "Kita-Senju, Skytree Floor, Senju-asahicho, Senju asahi cho, Adachi, Tokyo, 120-0026, Japan",
+  availability: "available",
+  user_id: 1
+)
+image2 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721444767/Black_super_bike_2024_auibfe.jpg")
+puts "created #{vehicle2.name}"
+vehicle3 = Vehicle.create!(
+  name: "MonsterATV",
+  category: "ATV",
+  seats: 4,
+  speed: 300,
+  price_per_day: 75000,
+  description: "Elevate your adventure with our ATV High-End Car Rental. Featuring a sleek design, premium interior, and powerful engine, this all-terrain vehicle excels on any surface. Enjoy advanced tech, including a high-definition touchscreen and GPS, along with top safety features. Perfect for luxury outings and thrilling escapades.",
+  location: "Tochomae, Chuo-dori Avenue, Nishi-Shinjuku, Nishi Shinjuku 2, Nishi Shinjuku, Shinjuku, Tokyo, 163-8001, Japan",
+  availability: "available",
+  user_id: 1
+)
+image3 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721444764/__11_o9f6qf.jpg")
+puts "created #{vehicle3.name}"
+vehicle4 = Vehicle.create!(
+  name: "JokerTruck",
+  category: "Truck",
+  seats: 6,
+  speed: 120,
+  price_per_day: 20000,
+  description: "Unleash excitement with our Joker Truck Rental. This striking, high-performance truck features a bold design inspired by the iconic Joker character. With powerful capabilities and a sleek, eye-catching exterior, it’s perfect for making a dramatic statement at events or on the road. Book now for a ride that’s both thrilling and unforgettable!",
+  location: "Ogikubo, Ome Kaido, Kamiogi 1, Kamiogi, Suginami, Tokyo, 167-0032, Japan",
+  availability: "available",
+  user_id: 1
+)
+image4 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721399347/development/z2c3uwojqgnv5bn4toouy0za1rcv.avif")
+puts "created #{vehicle4.name}"
+vehicle5 = Vehicle.create!(
+  name: "Scania",
+  category: "Van",
+  seats: 12,
+  speed: 280,
+  price_per_day: 110000,
+  description: "Discover luxury with our Scania High-End Van Rental. This premium van offers exceptional comfort and style, featuring a sophisticated interior, advanced technology, and powerful performance. Ideal for executive travel or upscale group outings, it combines elegance with practicality for an unmatched driving experience. Book now for unparalleled sophistication and comfort!",
+  location: "Ueno, Ueno Station, Higashiueno 3-chome, 東上野, Taito, Tokyo, 110-8716, Japan",
+  availability: "available",
+  user_id: 1
+)
+image5 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721444764/__1_fb9bc3.jpg")
+puts "created #{vehicle5.name}"
+vehicle6 = Vehicle.create!(
+  name: "CIABoat",
+  category: "Boat",
+  seats: 10,
+  speed: 400,
+  price_per_day: 200000,
+  description: "Experience elite sophistication with our CIA High-End Boat Rental. This luxury vessel features a sleek, covert design and opulent interior, equipped with advanced navigation and high-end amenities. Ideal for discreet operations or exclusive events, it combines cutting-edge technology with unparalleled comfort. Book now for a journey in ultimate style.",
+  location: "Minatomirai, Keyaki-dori Avenue, Minato Mirai, Nishi Ward, Yokohama, Kanagawa Prefecture, 231-0017, Japan",
+  availability: "available",
+  user_id: 1
+)
+image6 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721444767/30_Car_Owners_That_Went_Too_Far_With_Dumb_Mods_For_Their_Cars_rgfkp9.jpg")
+puts "created #{vehicle6.name}"
+vehicle7 = Vehicle.create!(
+  name: "BlackJet",
+  category: "Airplane",
+  seats: 25,
+  speed: 600,
+  price_per_day: 300000,
+  description: "Elevate your travel with our Black Jet High-End Rental. This sleek, luxurious jet features a striking black exterior and a sumptuous interior with premium amenities. Equipped with state-of-the-art technology and offering exceptional performance, it’s perfect for high-profile trips and exclusive events. Experience unparalleled comfort and style in the skies.",
+  location: "Haneda Airport, Bayshore Route, Hanedakuko 3-chome, Haneda Kukou, Ota, Tokyo, 144-0041, Japan",
+  availability: "available",
+  user_id: 1
+)
+image7 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721444762/privatjet_c2wvar.avif")
+puts "created #{vehicle7.name}"
+vehicle8 = Vehicle.create!(
+  name: "Celestia",
+  category: "Spaceship",
+  seats: 4,
+  speed: 720,
+  price_per_day: 800000,
+  description: "Experience the pinnacle of luxury with our High-End White Spaceship Rental. This stunning vessel features a pristine white exterior and a lavish, futuristic interior with top-of-the-line amenities. Equipped with advanced technology for seamless space travel, it ensures a smooth, elegant journey. Perfect for high-profile missions or exclusive galactic adventures.",
+  location: "Narita Airport Terminal 1, Kuko Nishi-dori, Furugome, Narita, Chiba Prefecture, 282-0004, Japan",
+  availability: "available",
+  user_id: 1
+)
+image8 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721444762/spaceship_c9aysq.jpg")
+puts "created #{vehicle8.name}"
+vehicle9 = Vehicle.create!(
+  name: "Mercedes85",
+  category: "Car",
+  seats: 2,
+  speed: 550,
+  price_per_day: 80000,
+  description: "Discover luxury with our High-End Black Mercedes Car Rental. This sophisticated vehicle features a sleek black exterior and a refined interior with premium materials. Boasting advanced technology, exceptional performance, and a smooth, powerful ride, it’s perfect for making a bold statement at any event or during executive travel. Book now for unparalleled elegance.",
+  location: "Tokyo International Cruise Terminal Station, Daiba Oumi Road, Aomi 2-chome, Aomi, Koto, Tokyo, 135-0064, Japan",
+  availability: "available",
+  user_id: 1
+)
+image9 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721444766/Mercedes_qyvvnd.jpg")
+puts "created #{vehicle9.name}"
+vehicle10 = Vehicle.create!(
+  name: "Panther",
+  category: "Bicycle",
+  seats: 1,
+  speed: 850,
+  price_per_day: 450000,
+  description: "Unleash your inner thrill-seeker with our High-End Black Panther Motorcycle. This striking bike features a sleek black design and advanced performance engineering, combining a powerful engine with cutting-edge technology. Its luxurious finish and superior handling make it perfect for both city cruising and exhilarating rides. Book now for an unforgettable experience.",
+  location: "Akihabara, JR, Kanda-Sakumacho 1-chome, Kanda-Sakumacho, Chiyoda, Tokyo, 101-0028, Japan",
+  availability: "available",
+  user_id: 1
+)
+image10 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721444764/__10_xy7psk.jpg")
+puts "created #{vehicle10.name}"
+vehicle11 = Vehicle.create!(
+  name: "LightningATV",
+  category: "ATV",
+  seats: 2,
+  speed: 600,
+  price_per_day: 60000,
+  description: "Experience adrenaline-pumping luxury with our High-End Lightning ATV. Featuring a bold orange and black design, this top-tier all-terrain vehicle combines striking aesthetics with powerful performance. Its advanced suspension and robust engine ensure exceptional handling on any terrain. Perfect for those seeking style and power in their off-road adventures.",
+  location: "Roppongi, Route 3 Shibuya Line, Roppongi 4-chome, Roppongi, Azabu, Minato, Tokyo, 106-0032, Japan",
+  availability: "available",
+  user_id: 1
+)
+image11 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721444764/__15_fyy4z0.jpg")
+puts "created #{vehicle11.name}"
+vehicle12 = Vehicle.create!(
+  name: "Millennium",
+  category: "Truck",
+  seats: 6,
+  speed: 1050,
+  price_per_day: 500000,
+  description: "Experience unrivaled luxury with our High-End Black Truck Rental. This sleek, all-black truck boasts a sophisticated design, premium interior, and top-notch performance. Equipped with advanced technology and superior handling, it’s ideal for both executive travel and rugged terrains. Elevate your journey with a blend of elegance and power.",
+  location: "Ikebukuro, Komachi dori, Ikebukuro 3-chome, Nishi-Ikebukuro 1-chome, Toshima, Tokyo, 171-0021, Japan",
+  availability: "available",
+  user_id: 1
+)
+image12 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721444766/Mercedes_1_e97isi.jpg")
+puts "created #{vehicle12.name}"
+vehicle13 = Vehicle.create!(
+  name: "PartyVan",
+  category: "Van",
+  seats: 20,
+  speed: 320,
+  price_per_day: 100000,
+  description: "Transform your event with our High-End Black Party Van. Featuring a sleek black exterior and an opulent interior, this van is equipped with state-of-the-art sound systems, ambient lighting, and plush seating. Perfect for upscale parties and exclusive gatherings, it combines sophistication with entertainment. Make your next event unforgettable.",
+  location: "Hachioji, Chuo Expressway, Oyamachi, Hachioji, Tokyo, 192-0032, Japan",
+  availability: "available",
+  user_id: 1
+)
+image13 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721444763/__2_cpl7m1.jpg")
+puts "created #{vehicle13.name}"
+vehicle14 = Vehicle.create!(
+  name: "GoingMerry",
+  category: "Boat",
+  seats: 25,
+  speed: 200,
+  price_per_day: 180000,
+  description: "Embark on a luxury adventure with our High-End Luffy's Going Merry Rental. This meticulously crafted vessel combines the classic charm of the original with modern elegance. Featuring a stylish design, plush interiors, and top-tier amenities, it’s perfect for upscale cruises and exclusive events. Experience a legendary journey in ultimate comfort.",
+  location: "Odaiba, ウエストプロムナード, Daiba 1-chome, Daiba, Minato, Tokyo, 135-8625, Japan",
+  availability: "available",
+  user_id: 1
+)
+image14 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721308865/development/duqq7lp8ozevaa9a792vg71m9oxl.jpg")
+puts "created #{vehicle14.name}"
+vehicle15 = Vehicle.create!(
+  name: "SpiderCopter",
+  category: "Airplane",
+  seats: 2,
+  speed: 670,
+  price_per_day: 830000,
+  description: "Experience the future of luxury with our High-End Spidercopter Rental. This cutting-edge aircraft combines sleek, futuristic design with top-of-the-line performance. Equipped with advanced navigation systems and plush, high-tech interiors, it ensures a smooth, exhilarating flight. Perfect for exclusive travel and high-profile events, it offers an unparalleled airborne experience.",
+  location: "Shinagawa, Minato, Tokyo, 108-8611, Japan",
+  availability: "available",
+  user_id: 1
+)
+image15 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721444763/__13_hpc0xo.jpg")
+puts "created #{vehicle15.name}"
+vehicle16 = Vehicle.create!(
+  name: "Aurora",
+  category: "Spaceship",
+  seats: 2,
+  speed: 900,
+  price_per_day: 62000,
+  description: "Explore the cosmos in style with our High-End Orange Spaceship Rental. This striking vessel features a vibrant orange exterior and a luxurious, futuristic interior with advanced amenities. Equipped with state-of-the-art technology for smooth and sophisticated space travel, it’s perfect for exclusive galactic adventures. Elevate your journey with unparalleled elegance.",
+  location: "Jiyugaoka, 女神広場, Jiyugaoka 2-chome, Meguro, Tokyo, 152-0035, Japan",
+  availability: "available",
+  user_id: 1
+)
+image16 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721444763/__9_jrgxbw.jpg")
+puts "created #{vehicle16.name}"
+vehicle17 = Vehicle.create!(
+  name: "Deluxo",
+  category: "Car",
+  seats: 2,
+  speed: 300,
+  price_per_day: 20000,
+  description: "Discover sophistication with our High-End Gray Car Rental featuring side door opening. This sleek, gray luxury vehicle combines elegant design with cutting-edge technology and exceptional performance. The unique side door feature adds convenience and style, making it perfect for upscale events and effortless access. Experience comfort and refinement like never before.",
+  location: "Asakusa, Edo-dori Avenue, Kaminarimon 2-chome, Taito, Tokyo, 111-0034, Japan",
+  availability: "available",
+  user_id: 2
+)
+image17 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721307981/development/qfqudd3jlt0lmd3m7q0918892wsm.jpg")
+puts "created #{vehicle17.name}"
+vehicle18 = Vehicle.create!(
+  name: "Creamsen",
+  category: "Airplane",
+  seats: 4,
+  speed: 450,
+  price_per_day: 150000,
+  description: "Experience the pinnacle of luxury with our High-End Red Ferrari Helicopter Rental. Featuring a striking red exterior and opulent interior, this helicopter combines Ferrari’s iconic design with advanced aviation technology. Enjoy an exhilarating flight with unparalleled comfort and style. Perfect for high-profile events or exclusive travel. Book now for a truly spectacular journey.",
+  location: "Takadanobaba, Waseda-dori, Takadanobaba　2, Takadanobaba, Shinjuku, Tokyo, 167-0075, Japan",
+  availability: "available",
+  user_id: 3
+)
+image18 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721444764/__12_rozicx.jpg")
+puts "created #{vehicle18.name}"
+vehicle19 = Vehicle.create!(
+  name: "Valor",
+  category: "Spaceship",
+  seats: 2,
+  speed: 1050,
+  price_per_day: 450000,
+  description: "Experience elite travel with our High-End Military Plane Rental. This advanced aircraft combines rugged military precision with luxurious amenities, featuring a sleek, tactical design and an opulent, fully-equipped interior. Ideal for high-profile missions or exclusive journeys, it offers unmatched performance and comfort. Elevate your airborne experience with sophistication and power.",
+  location: "Ebisu, Komazawa-dori, Ebisu nishi 1, Ebisu nishi, Shibuya, Tokyo, 150-0022, Japan",
+  availability: "available",
+  user_id: 4
+)
+image19 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721444766/GTA_5_-_B-11_Strikeforce_Test_Showcase_zaujxo.jpg")
+puts "created #{vehicle19.name}"
+vehicle20 = Vehicle.create!(
+  name: "KnightBus",
+  category: "Van",
+  seats: 60,
+  speed: 900,
+  price_per_day: 400000,
+  description: "Experience magical travel with our Knight Bus Rental, inspired by the iconic Harry Potter series. This whimsical, triple-decker bus features an enchanting design with a distinctive purple exterior and luxurious, spacious interiors. Equipped with comfortable seating and unique charm, it’s perfect for themed events or a fantastical journey. Book now for a truly magical ride.",
+  location: "Harry Potter Mahou Dokoro, 1, Akasaka, Minato, Tokyo, 107-6328, Japan",
+  availability: "available",
+  user_id: 5
+)
+image20 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721444766/Knight-Bus_s0mtcr.jpg")
+puts "created #{vehicle20.name}"
+
+puts "Attaching photos"
+vehicle1.photo.attach(io: image1, filename: "#{vehicle1.name}.jpg", content_type: "image/jpg")
+vehicle2.photo.attach(io: image2, filename: "#{vehicle2.name}.jpg", content_type: "image/jpg")
+vehicle3.photo.attach(io: image3, filename: "#{vehicle3.name}.jpg", content_type: "image/jpg")
+vehicle4.photo.attach(io: image4, filename: "#{vehicle4.name}.jpg", content_type: "image/jpg")
+vehicle5.photo.attach(io: image5, filename: "#{vehicle5.name}.jpg", content_type: "image/jpg")
+vehicle6.photo.attach(io: image6, filename: "#{vehicle6.name}.jpg", content_type: "image/jpg")
+vehicle7.photo.attach(io: image7, filename: "#{vehicle7.name}.jpg", content_type: "image/jpg")
+vehicle8.photo.attach(io: image8, filename: "#{vehicle8.name}.jpg", content_type: "image/jpg")
+vehicle9.photo.attach(io: image9, filename: "#{vehicle9.name}.jpg", content_type: "image/jpg")
+vehicle10.photo.attach(io: image10, filename: "#{vehicle10.name}.jpg", content_type: "image/jpg")
+vehicle11.photo.attach(io: image11, filename: "#{vehicle11.name}.jpg", content_type: "image/jpg")
+vehicle12.photo.attach(io: image12, filename: "#{vehicle12.name}.jpg", content_type: "image/jpg")
+vehicle13.photo.attach(io: image13, filename: "#{vehicle13.name}.jpg", content_type: "image/jpg")
+vehicle14.photo.attach(io: image14, filename: "#{vehicle14.name}.jpg", content_type: "image/jpg")
+vehicle15.photo.attach(io: image15, filename: "#{vehicle15.name}.jpg", content_type: "image/jpg")
+vehicle16.photo.attach(io: image16, filename: "#{vehicle16.name}.jpg", content_type: "image/jpg")
+vehicle17.photo.attach(io: image17, filename: "#{vehicle17.name}.jpg", content_type: "image/jpg")
+vehicle18.photo.attach(io: image18, filename: "#{vehicle18.name}.jpg", content_type: "image/jpg")
+vehicle19.photo.attach(io: image19, filename: "#{vehicle19.name}.jpg", content_type: "image/jpg")
+vehicle20.photo.attach(io: image20, filename: "#{vehicle20.name}.jpg", content_type: "image/jpg")
+puts "Attached ALL photos."
+
+puts "SEEDS DONE!!!"
