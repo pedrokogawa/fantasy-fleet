@@ -10,13 +10,12 @@ export default class extends Controller {
 	};
 
 	connect() {
-		mapboxgl.accessToken =
-			"pk.eyJ1IjoicGtvZ2F3YSIsImEiOiJjbHlzazd6eWEwZ252MnFzNmFmM21uMWdvIn0.RjcLs7simKtubr8Y8btdzw";
+		mapboxgl.accessToken = this.apiKeyValue;
 		this.map = new mapboxgl.Map({
 			container: this.element,
 			style: "mapbox://styles/mapbox/streets-v11",
 			center: [this.markerLngValue, this.markerLatValue], // Coordenadas iniciais do mapa
-			zoom: 9,
+			zoom: 11,
 		});
 		this.#addMarkersToMap();
 	}
