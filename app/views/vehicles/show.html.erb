@@ -15,6 +15,7 @@
               <p><strong>Name:</strong> <%= @vehicle.name %></p>
               <p><strong>Category:</strong> <%= @vehicle.category %></p>
               <p><strong>Location:</strong> <%= @vehicle.location %></p>
+              <p><strong>Listed By:</strong> <%= @vehicle.user.nickname %></p>
             </div>
             <div class="col-5">
               <p><strong>Daily Price:</strong> <%= number_to_currency(@vehicle.price_per_day, unit: '¥', delimiter: ',', precision:0) %></p>
