@@ -88,6 +88,11 @@ puts "Destroying all Vehicles"
 Vehicle.destroy_all
 puts "Destroyed Vehicles"
 
+# !!!!! BOOKINGS DELETE ALL !!!!!! 
+puts "Deleting all Bookings"
+Booking.destroy_all
+puts "Deleted Bookings."
+
 puts "Seeding first 20 vehicles..."
 vehicle1 = Vehicle.create!(
   name: "BumbleBee",
