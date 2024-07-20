@@ -1,11 +1,49 @@
-<h1>Hello from Bookings - INDEX page</h1>
-<%= link_to "Book a vehicle", new_booking_path, class: 'btn btn-primary' %>
 <div class="container">
-  <% @bookings.each do |booking| %>
-    <p>Booking is at: <%= booking.start_date %> to <%= booking.end_date %></p>
-    <p>Total is: ¥<%= booking.total_price %></p>
-    <p>Status: <%= booking.status %></p>
-    <span>[ <%= booking.user_id %> ][ <%= booking.vehicle_id %> ]</span>
-    <%= link_to "Show details", booking_path(booking), class: 'btn btn-primary' %>
-  <% end %>
+  <h4 class="mb-3">You have rented</h4>
+  <div>
+    <div class="row">
+      <% @bookings.each do |booking| %>
+        <div class="col-md-3">
+          <a href="<%= booking_path(booking) %>"> <!-- Link to vehicle details page -->
+            <div class="card mb-4 card-custom" style="height:325px ; width: 226px">
+              <div class="image-container">
+                <div class="image-wrapper">
+                  <% if booking.vehicle.photo.attached? %>
+                    <%= cl_image_tag booking.vehicle.photo.key, style:"height: 160px; width: 226px" %>
+                  <% else %>
+                    <%= image_tag 'https://tork.buzz/__export/1718370996032/sites/tork/img/2024/06/14/image_10.png_1203501776.png', style:"height: 160px; width: 226px" %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <strong><%= booking.vehicle.name %></strong>
+                  <div data-controller="status-style">
+                    <span data-status-style-target="statusElement" data-status="<%= booking.status %>">
+                      <%= booking.status.capitalize %>
+                    </span>
+                  </div>
+                </div>
+                <div class="d-flex mb-1">
+                  <p class="m-0" style="font-size:12px"><%= booking.start_date.strftime("%d %b %Y") %> - <%= booking.end_date.strftime("%d %b %Y") %></p>
+                  <div class="ms-2" style="font-size:12px">
+                    <strong><%= number_to_currency(booking.total_price, unit: "¥", delimiter: ",", precision: 0) %> JPY</strong>
+                  </div>
+                </div>
+                <div class="card-text" style="font-size:12px">
+                  <div class="mb-1">
+                    <%= booking.vehicle.location %>
+                  </div>
+                  <div style="font-size:12px">
+                    <%= booking.vehicle.seats %>
+                    <i class="fa-solid fa-user-group"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
