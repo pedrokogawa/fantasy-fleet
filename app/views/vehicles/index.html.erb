@@ -1,27 +1,59 @@
-<h1>Welcome to FANTASY FLEET's INDEX page</h1>
-<%= link_to "Create a vehicle", new_vehicle_path, class: 'btn btn-primary' %>
-<%= link_to "My Bookings", bookings_path, class: 'btn btn-primary' %>
-<%= link_to "My Vehicle Bookings", vendor_bookings_path, class: 'btn btn-primary' %>
+<% link_to "Create a vehicle", new_vehicle_path, class: 'btn btn-primary' %>
+<% link_to "My Bookings", bookings_path, class: 'btn btn-primary' %>
+<% link_to "My Vehicle Bookings", vendor_bookings_path, class: 'btn btn-primary' %>
+
+<style>
+  .card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .image-container {
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+  }
+  .image-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .card-custom {
+    width: 100%;
+  }
+</style>
+
 <div class="container">
-  <% @vehicles.each do |vehicle| %>
-    <div class="card-vehicle">
-      <% if vehicle.photo.attached? %>
-        <%= cl_image_tag vehicle.photo.key, height: 1152, width: 2048, crop: :fill %>
-      <% else %>
-        <%= image_tag 'https://tork.buzz/__export/1718370996032/sites/tork/img/2024/06/14/image_10.png_1203501776.png' %>
-      <% end %>
-      <div class="card-vehicle-infos">
-        <h2><%= vehicle.name %></h2>
-        <p><%= vehicle.description %></p>
-        <!-- <p><%= vehicle.category %></p> -->
-        <!-- <p><%= vehicle.seats %></p> -->
-        <!-- <p><%= vehicle.speed %></p> -->
-        <!-- <p><%= vehicle.price_per_day %></p> -->
-        <!-- <p><%= vehicle.location %></p> -->
-        <!-- <p><%= vehicle.availability %></p> -->
-        <!-- <p><%= vehicle.user_id %></p> -->
-        <%= link_to "Show details", vehicle_path(vehicle), class: 'btn btn-primary' %>
+  <div class="row">
+    <% @vehicles.each do |vehicle| %>
+      <div class="col-md-3">
+        <a href="<%= vehicle_path(vehicle) %>"> <!-- Link to vehicle details page -->
+          <div class="card mb-4 card-custom">
+            <div class="image-container">
+              <div class="image-wrapper">
+                <% if vehicle.photo.attached? %>
+                  <%= cl_image_tag vehicle.photo.key, class: "card-img-top" %>
+                <% else %>
+                  <%= image_tag 'https://tork.buzz/__export/1718370996032/sites/tork/img/2024/06/14/image_10.png_1203501776.png', class: "card-img-top" %>
+                <% end %>
+              </div>
+            </div>
+            <div class="card-body">
+              <strong><%= vehicle.name %></strong>
+              <p class="card-text">
+                <%= vehicle.location %><br>
+                <%= vehicle.category %>, <%= vehicle.seats %> seats, <%= vehicle.speed %> km/h<br>
+                <strong>¥<%= vehicle.price_per_day %> JPY</strong> day
+              </p>
+            </div>
+          </div>
+        </a>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
+
+</div><%= render "shared/navbar" %>
+
