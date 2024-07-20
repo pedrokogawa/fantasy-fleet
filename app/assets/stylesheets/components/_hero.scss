@@ -7,7 +7,7 @@
 .hero-section {
     background-color: #0f0f0f;
   }
-  
+
   // Hero section styling
 .hero {
     display: flex;
@@ -16,7 +16,7 @@
     position: relative;
     gap: 24px;
   }
-  
+
   // Wrap images styling
   .wrap-images {
     overflow: hidden;
@@ -24,7 +24,7 @@
     align-items: flex-start;
     position: relative;
     margin-top: 80px;
-  
+
     &::before,
     &::after {
       content: "";
@@ -33,16 +33,16 @@
       width: 50%;
       height: 100%;
     }
-  
+
     &::before {
       background: linear-gradient(-90deg, rgba(32, 32, 32, 0) 6.38%, #101010 100%);
     }
-  
+
     &::after {
       right: 0;
       background: linear-gradient(90deg, rgba(32, 32, 32, 0.00) 6.38%, #101010 100%);
     }
-  
+
     &:hover {
       .row-images {
         animation-play-state: paused;
@@ -50,25 +50,25 @@
       }
     }
   }
-  
+
   // Row images styling
   .row-images {
     flex-shrink: 0;
     display: flex;
     gap: 16px;
     animation: h-scroll 10s linear infinite;
-  
+
     img {
       height: 150px;
       width: 300px;
       border-radius: 8px;
-  
+
       &:first-child {
         margin-left: 16px;
       }
     }
   }
-  
+
   // Keyframe animations
   @keyframes h-scroll {
     from {
@@ -78,21 +78,21 @@
       transform: translateX(-100%);
     }
   }
-  
+
   // Media queries
   @media screen and (min-height: 540px) {
     .wrap-images {
       display: flex;
     }
   }
-  
-  
+
+
   @media screen and (min-width: 640px) {
     .hero {
       gap: 32px;
     }
   }
-  
+
   @media screen and (min-width: 1024px) {
     .wrap-images {
       max-width: 768px;
@@ -102,7 +102,7 @@
       height: 200px;
     }
   }
-  
+
   @media screen and (min-width: 1280px) {
     .wrap-images {
       max-width: 1024px;
@@ -114,8 +114,58 @@
     font-optical-sizing: auto;
     font-style: normal;
   }
+
   .name {
-    font-family: "Carter One", system-ui;
+    font-family: "Bungee", sans-serif;
     font-weight: 400;
     font-style: normal;
+    color: #0074B7;
   }
+
+/* CSS */
+.button-6 {
+  align-items: center;
+  background-color: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.button-6:hover,
+.button-6:focus {
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.button-6:hover {
+  transform: translateY(-1px);
+}
+
+.button-6:active {
+  background-color: #F0F0F1;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  transform: translateY(0);
+}
