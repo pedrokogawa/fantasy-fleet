@@ -1,0 +1,121 @@
+// Import variables (if they are in a separate file)
+// @import 'variables';
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Lexend:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Carter+One&family=Lexend:wght@100..900&display=swap');
+
+// Body styling
+.hero-section {
+    background-color: #0f0f0f;
+  }
+  
+  // Hero section styling
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    gap: 24px;
+  }
+  
+  // Wrap images styling
+  .wrap-images {
+    overflow: hidden;
+    display: none;
+    align-items: flex-start;
+    position: relative;
+    margin-top: 80px;
+  
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: 20;
+      width: 50%;
+      height: 100%;
+    }
+  
+    &::before {
+      background: linear-gradient(-90deg, rgba(32, 32, 32, 0) 6.38%, #101010 100%);
+    }
+  
+    &::after {
+      right: 0;
+      background: linear-gradient(90deg, rgba(32, 32, 32, 0.00) 6.38%, #101010 100%);
+    }
+  
+    &:hover {
+      .row-images {
+        animation-play-state: paused;
+        transition: 0.5s ease-in-out;
+      }
+    }
+  }
+  
+  // Row images styling
+  .row-images {
+    flex-shrink: 0;
+    display: flex;
+    gap: 16px;
+    animation: h-scroll 10s linear infinite;
+  
+    img {
+      height: 150px;
+      width: 300px;
+      border-radius: 8px;
+  
+      &:first-child {
+        margin-left: 16px;
+      }
+    }
+  }
+  
+  // Keyframe animations
+  @keyframes h-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+  
+  // Media queries
+  @media screen and (min-height: 540px) {
+    .wrap-images {
+      display: flex;
+    }
+  }
+  
+  
+  @media screen and (min-width: 640px) {
+    .hero {
+      gap: 32px;
+    }
+  }
+  
+  @media screen and (min-width: 1024px) {
+    .wrap-images {
+      max-width: 768px;
+      align-self: center;
+    }
+    .row-images img {
+      height: 200px;
+    }
+  }
+  
+  @media screen and (min-width: 1280px) {
+    .wrap-images {
+      max-width: 1024px;
+    }
+  }
+
+  .title {
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+  .name {
+    font-family: "Carter One", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }

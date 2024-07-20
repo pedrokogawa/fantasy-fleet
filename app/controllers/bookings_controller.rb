@@ -8,6 +8,7 @@ class BookingsController < ApplicationController
     end
 
     def show
+        
     end
 
     #new form is at /bookings/new ~ test OK
@@ -18,15 +19,18 @@ class BookingsController < ApplicationController
     def create
         @booking = Booking.new(booking_params)
         @booking.user_id = current_user.id
-        @booking.total_price_calculation
         @booking.status = :waiting
+        @booking.total_price_calculation
 
-        if @booking.save
-            redirect_to booking_path(@booking)
-        else
-            render :new
+        # Redirect to vehicle show page if error occurs
+          if @booking.total_price == 0
+            redirect_to vehicle_path(@booking.vehicle), notice: 'Booking error. Invalid dates.'
+          elsif @booking.save
+            redirect_to booking_path(@booking), notice: 'Booking was successfully created!'
+          else
+            redirect_to vehicle_path(@booking.vehicle), notice: 'Booking error. Try again.'
         end
-    end
+      end
 
     #edit form is at /bookings/:id/edit ~ test OK
     def edit

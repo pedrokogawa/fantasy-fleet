@@ -1,7 +1,37 @@
-<h1>Hello from Bookings - SHOW page</h1>
-<p>Booking is at: <%= @booking.start_date %> to <%= @booking.end_date %></p>
-<p>Total is: ¥<%= @booking.total_price %></p>
-<p>Status: <%= @booking.status %></p>
-<span>[ <%= @booking.user_id %> ][ <%= @booking.vehicle_id %> ]</span>
-<%= link_to "Edit Booking", edit_booking_path, class: 'btn btn-success' %>
-<%= link_to "Show all bookings", bookings_path, class: 'btn btn-primary' %>
+<div class="container d-flex justify-content-between">
+  <div>
+    <% if @booking.vehicle.photo.attached? %>
+      <%= cl_image_tag @booking.vehicle.photo.key, height: 1152, width: 2048, crop: :fill, class: "rounded-3" %>
+    <% else %>
+      <%= image_tag 'https://tork.buzz/__export/1718370996032/sites/tork/img/2024/06/14/image_10.png_1203501776.png', height: 350, width: 500, crop: :fill, class: "rounded-3" %>
+    <% end %>
+  </div>
+  <div class="w-50">
+    <div class="d-flex justify-content-between">
+      <h2 class="fw-bold m-0"><%= @booking.vehicle.name %></h2>
+      <%= link_to bookings_path, class: 'btn btn-dark', style: "width: 40px" do %>
+        <i class="fa-solid fa-angles-left" style="color: #f2f6fd;"></i>
+      <% end %>
+    </div>
+    <div data-controller="status-style" class="mt-3">
+      <span data-status-style-target="statusElement" data-status="<%= @booking.status %>">
+        <%= @booking.status.capitalize %>
+      </span>
+    </div>
+    <h1 class="fw-bold my-3"><%= number_to_currency(@booking.total_price, unit: "¥", delimiter: ",", precision: 0) %></h1>
+    <div class="d-flex mb-2">
+      <div class="border me-3 p-2 rounded">
+        <%= @booking.start_date %>
+      </div>
+      <div class="border p-2 rounded">
+        <%= @booking.end_date %>
+      </div>
+    </div>
+    <div class="border p-3 rounded my-3">
+      <%= @booking.vehicle.description %>
+    </div>
+    <div>
+      <%= link_to "Edit", edit_booking_path, class: 'btn btn-dark', style: "width: 555px"%>
+    </div>
+  </div>
+</div>

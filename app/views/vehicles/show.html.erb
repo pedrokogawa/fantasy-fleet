@@ -1,23 +1,60 @@
-<h1>Hello from Vehicles - SHOW page</h1>
 <div class="container">
-  <% if @vehicle.photo.attached? %>
-    <%= cl_image_tag @vehicle.photo.key, height: 300, width: 400, crop: :fill %>
-  <% else %>
-    <%= image_tag 'https://tork.buzz/__export/1718370996032/sites/tork/img/2024/06/14/image_10.png_1203501776.png' %>
-  <% end %>
-  <p><%= @vehicle.name %></p>
-  <p><%= @vehicle.category %></p>
-  <p><%= @vehicle.seats %></p>
-  <p><%= @vehicle.speed %></p>
-  <p><%= @vehicle.price_per_day %></p>
-  <p><%= @vehicle.description %></p>
-  <p><%= @vehicle.location %></p>
-  <p><%= @vehicle.availability %></p>
-  <p><%= @vehicle.user_id %></p>
-</div>
-<% if current_user && @vehicle.user_id == current_user.id %>
-  <div class="container">
-    <%= link_to "Edit this vehicle", edit_vehicle_path, class: "btn btn-success" %>
-    <%= link_to "Delete vehicle", vehicle_path, class: "btn btn-danger", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 col-sm-12 col-xs-12">
+        <div class="row">
+          <div class="col-12">
+            <% if @vehicle.photo.attached? %>
+              <%= cl_image_tag @vehicle.photo.key, height: 1152, width: 2048, crop: :fill, class: 'img-fluid w-100' %>
+            <% else %>
+              <%= image_tag 'https://tork.buzz/__export/1718370996032/sites/tork/img/2024/06/14/image_10.png_1203501776.png', class: 'img-fluid w-100' %>
+            <% end %>
+          </div>
+          <div class="row mt-3">
+            <div class="col-5">
+              <p><strong>Name:</strong> <%= @vehicle.name %></p>
+              <p><strong>Category:</strong> <%= @vehicle.category %></p>
+              <p><strong>Location:</strong> <%= @vehicle.location %></p>
+            </div>
+            <div class="col-5">
+              <p><strong>Daily Price:</strong> <%= number_to_currency(@vehicle.price_per_day, unit: '¥', delimiter: ',', precision:0) %></p>
+              <p><strong>Seats:</strong> <%= @vehicle.seats %></p>
+              <p><strong>Speed:</strong> <%= @vehicle.speed %></p>
+            </div>
+            <div class="col-2">
+              <% if @vehicle.availability == 'available' %>
+                <div data-controller="status-style">
+                  <span data-status-style-target="statusElement" data-status="<%= @vehicle.availability %>">
+                    Available
+                  </span>
+                </div>
+              <% else %>
+                <div data-controller="status-style">
+                  <span data-status-style-target="statusElement" data-status="<%= @vehicle.availability %>">
+                    Unavailable
+                  </span>
+                </div>
+              <% end %>
+            </div>
+            <div class="col-12">
+              <p><strong>Description:</strong> <%= @vehicle.description %></p>
+            </div>
+            <% if current_user && @vehicle.user_id == current_user.id %>
+              <div class="container">
+                <%= link_to "Edit this vehicle", edit_vehicle_path, class: "btn btn-dark fw-lighter fs-6" %>
+                <%= link_to "Delete vehicle", vehicle_path, class: "btn btn-dark fw-lighter fs-6", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% if current_user && @vehicle.user_id != current_user.id %>
+        <div class="col-4">
+          <div class="ms-5">
+            <%= render 'bookings/new', booking: @booking, vehicle: @vehicle %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
