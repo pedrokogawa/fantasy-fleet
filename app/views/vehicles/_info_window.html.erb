@@ -1,9 +1,11 @@
 <div>
   <div class="popup-img-container">
-    <% if vehicle.photo.attached? %>
-      <%= cl_image_tag vehicle.photo.key, class: 'img-fluid', crop: :fill %>
-    <% else %>
-      <%= image_tag 'https://tork.buzz/__export/1718370996032/sites/tork/img/2024/06/14/image_10.png_1203501776.png', class: 'img-fluid', crop: :fill %>
+    <%= link_to vehicle_path(vehicle) do %>
+      <% if vehicle.photo.attached? %>
+        <%= cl_image_tag vehicle.photo.key, class: 'img-fluid', crop: :fill %>
+      <% else %>
+        <%= image_tag 'https://tork.buzz/__export/1718370996032/sites/tork/img/2024/06/14/image_10.png_1203501776.png', class: 'img-fluid', crop: :fill %>
+      <% end %>
     <% end %>
   </div>
   <div m-3>

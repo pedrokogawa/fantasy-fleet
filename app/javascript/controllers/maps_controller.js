@@ -5,13 +5,19 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder";
 // Connects to data-controller="maps"
 export default class extends Controller {
 	static values = {
-		apiKey: String,
 		markers: Array,
 	};
 
 	connect() {
+		const modalElement = document.getElementById("map-modal");
 		mapboxgl.accessToken =
 			"pk.eyJ1IjoicGtvZ2F3YSIsImEiOiJjbHlzazd6eWEwZ252MnFzNmFmM21uMWdvIn0.RjcLs7simKtubr8Y8btdzw";
+		modalElement.addEventListener("shown.bs.modal", () => {
+			setTimeout(() => {
+				this.map.resize();
+				this.#fitMapToMarkers();
+			}, 5); // Pequeno delay para garantir o redimensionamento correto
+		});
 
 		this.map = new mapboxgl.Map({
 			container: this.element,
@@ -40,6 +46,6 @@ export default class extends Controller {
 		this.markersValue.forEach((marker) =>
 			bounds.extend([marker.lng, marker.lat])
 		);
-		this.map.fitBounds(bounds, { padding: 40, maxZoom: 15, duration: 0 });
+		this.map.fitBounds(bounds, { padding: 40, maxZoom: 15, duration: 1000 });
 	}
 }
