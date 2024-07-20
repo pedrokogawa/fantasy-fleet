@@ -1,8 +1,12 @@
 <h1>Hello from Bookings - EDIT page</h1>
 <%= simple_form_for @booking do |f| %>
   <div class="form-inputs">
-    <%= f.input :start_date %>
-    <%= f.input :end_date %>
+    <%= f.input :start_date,
+        as: :string,
+        input_html: { data: { controller: "datepicker" } } %>
+    <%= f.input :end_date,
+        as: :string,
+        input_html: { data: { controller: "datepicker" } } %>
     <%= f.input :vehicle_id, collection: Vehicle.all.map { |vehicle| [vehicle.name, vehicle.id] }, prompt: "Select a vehicle" %>
   </div>
   <div class="form-actions">
