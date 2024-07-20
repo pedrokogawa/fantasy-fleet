@@ -141,7 +141,7 @@ vehicle4 = Vehicle.create!(
   speed: 120,
   price_per_day: 20000,
   description: "Unleash excitement with our Joker Truck Rental. This striking, high-performance truck features a bold design inspired by the iconic Joker character. With powerful capabilities and a sleek, eye-catching exterior, it’s perfect for making a dramatic statement at events or on the road. Book now for a ride that’s both thrilling and unforgettable!",
-  location: "West City",
+  location: "Ogikubo, Ome Kaido, Kamiogi 1, Kamiogi, Suginami, Tokyo, 167-0032, Japan",
   availability: "available",
   user_id: 1
 )
@@ -258,7 +258,7 @@ vehicle13 = Vehicle.create!(
   speed: 320,
   price_per_day: 100000,
   description: "Transform your event with our High-End Black Party Van. Featuring a sleek black exterior and an opulent interior, this van is equipped with state-of-the-art sound systems, ambient lighting, and plush seating. Perfect for upscale parties and exclusive gatherings, it combines sophistication with entertainment. Make your next event unforgettable.",
-  location: "Machida, Higashi-Kagawa, Kagawa Prefecture, 769-2520, Japan",
+  location: "Hachioji, Chuo Expressway, Oyamachi, Hachioji, Tokyo, 192-0032, Japan",
   availability: "available",
   user_id: 1
 )
@@ -297,7 +297,7 @@ vehicle16 = Vehicle.create!(
   speed: 900,
   price_per_day: 62000,
   description: "Explore the cosmos in style with our High-End Orange Spaceship Rental. This striking vessel features a vibrant orange exterior and a luxurious, futuristic interior with advanced amenities. Equipped with state-of-the-art technology for smooth and sophisticated space travel, it’s perfect for exclusive galactic adventures. Elevate your journey with unparalleled elegance.",
-  location: "Okayama, 東西連絡通路, Ekimotocho, Kita Ward, Okayama, Okayama Prefecture, 700-0024, Japan",
+  location: "Jiyugaoka, 女神広場, Jiyugaoka 2-chome, Meguro, Tokyo, 152-0035, Japan",
   availability: "available",
   user_id: 1
 )
