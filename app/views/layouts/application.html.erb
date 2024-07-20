@@ -14,6 +14,9 @@
     <!-- MAIN Navbar -->
     <%= render "shared/navbar" %>
     <!-- CATEGORIES ICONS Navbar -->
+    <% if current_page?(root_path) %>
+      <%= render "shared/hero" %>
+    <% end %>
     <%= render "shared/category_navbar" %>
     <!-- Devise alerts and notice -->
     <p class="notice"><%= notice %></p>
