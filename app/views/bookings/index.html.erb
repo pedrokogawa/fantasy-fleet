@@ -4,7 +4,7 @@
     <div class="row">
       <% @bookings.each do |booking| %>
         <div class="col-md-3">
-          <a href="<%= booking_path(booking) %>"> <!-- Link to vehicle details page -->
+          <a href="<%= booking_path(booking) %>" class="hoverClass"> <!-- Link to vehicle details page -->
             <div class="card mb-4 card-custom" style="height:350px ; width: 226px">
               <div class="image-container">
                 <div class="image-wrapper">

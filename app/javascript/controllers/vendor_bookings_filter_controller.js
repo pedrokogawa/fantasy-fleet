@@ -6,6 +6,11 @@ export default class extends Controller {
 
 	filter(event) {
 		const status = event.target.dataset.status;
+		const buttons = document.querySelectorAll(".buttons p");
+		buttons.forEach((button) => {
+			button.classList.remove("font-weight-bold");
+		});
+		event.target.classList.add("font-weight-bold");
 		this.filterCards(status);
 	}
 
