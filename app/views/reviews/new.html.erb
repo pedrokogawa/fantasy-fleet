@@ -1,0 +1,8 @@
+<%= simple_form_for([ @booking, @review ]) do |f| %>
+  <%= f.input :title, label: "Add a Title" %>
+  <%= f.input :comment, label: "Add a comment" %>
+  <%= f.input :rating, collection: (1..5).to_a, label: "Rating" %>
+  <%= f.hidden_field :user_id, value: @current_user_id %>
+  <%= f.hidden_field :vehicle_id, value: @booking.vehicle.id %>
+  <%= f.submit "Create Review" %>
+<% end %>

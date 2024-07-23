@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     member do
       patch :cancel
     end
-    resources :reviews, only: [:create, :destroy]
+    resources :reviews, only: [:new, :create, :destroy]
   end
 
   namespace :vendor do 
