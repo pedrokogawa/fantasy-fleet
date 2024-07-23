@@ -8,6 +8,9 @@ class BookingsController < ApplicationController
     end
 
     def show
+      @vehicle = @booking.vehicle
+      @review = Review.new
+      @current_user_id = current_user.id
     end
 
     #new form is at /bookings/new ~ test OK

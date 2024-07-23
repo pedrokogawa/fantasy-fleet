@@ -1,0 +1,9 @@
+<% @reviews.each do |review| %>
+  <div class="review">
+    <%= link_to "x", vehicle_review_path(@vehicle, review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+    <h3><%= review.title %></h3>
+    <p><%= review.comment %></p>
+    <p>Rating: <%= review.rating %></p>
+    <p>Reviewed by: <%= review.user.first_name %></p>
+  </div>
+<% end %>

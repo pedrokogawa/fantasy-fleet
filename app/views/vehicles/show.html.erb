@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container border-bottom mb-5">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-8 col-sm-12 col-xs-12">
@@ -20,7 +20,7 @@
             <div class="col-5">
               <p><strong>Daily Price:</strong> <%= number_to_currency(@vehicle.price_per_day, unit: '¥', delimiter: ',', precision:0) %></p>
               <p><strong>Seats:</strong> <%= @vehicle.seats %></p>
-              <p><strong>Speed:</strong> <%= @vehicle.speed %></p>
+              <p><strong>Speed:</strong> <%= @vehicle.speed %> <span class="text-muted">km/h</span></p>
             </div>
             <div class="col-2">
               <% if @vehicle.availability == 'available' %>
@@ -50,9 +50,15 @@
         </div>
       </div>
       <% if current_user && @vehicle.user_id != current_user.id %>
-        <div class="col-4">
+        <div class="col-md-4 col-sm-12 col-xs-12">
           <div class="ms-5">
             <%= render 'bookings/new', booking: @booking, vehicle: @vehicle %>
+            <div style="width: 100%; height: 240px;" class="mt-4"
+              data-controller="map"
+              data-map-marker-lat-value="<%= @vehicle.latitude %>"
+              data-map-marker-lng-value="<%= @vehicle.longitude %>"
+              data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+            </div>
           </div>
         </div>
       <% end %>
@@ -61,25 +67,33 @@
       <a class="btn btn-primary" href="/users/sign_in" role="button">Sign in to book</a>
     <% end %>
   </div>
-  <div style="width: 100%; height: 300px;" class="m-3"
-    data-controller="map"
-    data-map-marker-lat-value="<%= @vehicle.latitude %>"
-    data-map-marker-lng-value="<%= @vehicle.longitude %>"
-    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
+<!-- IF current_user created a Booking with the Vechile, user can create a Review once -->
+<% if current_user %>
+  <% @user_booking = current_user.bookings.find_by(vehicle_id: @vehicle.id, status: 'accepted') %>
+  <% if @user_booking %>
+    <% @existing_review = Review.find_by(user_id: @current_user_id, vehicle_id: @vehicle.id) %>
+    <% unless @existing_review %>
+      <!-- Button to trigger the review modal -->
+      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Write a Review
+      </button>
+      <%= render "reviews/new" %>
+    <% end %>
+  <% end %>
+<% end %>
+<!--REVIEWS SECTION-->
+<div class="container">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8 col-sm-12 col-xs-12">
+        <div class="row">
+          <div class="col-12">
+            <h2>Reviews</h2>
+            <%= render "reviews/show" %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Write a Review</button>
-<!-- Modal -->
-<%= render "reviews/new" %>
-<!--REVIEWS SECTION-->
-<h2>Reviews</h2>
-<% @reviews.each do |review| %>
-  <div class="review">
-    <%= link_to "x", vehicle_review_path(@vehicle, review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-    <h3><%= review.title %></h3>
-    <p><%= review.comment %></p>
-    <p>Rating: <%= review.rating %></p>
-    <p>Reviewed by: <%= review.user.first_name %></p>
-  </div>
-<% end %>
