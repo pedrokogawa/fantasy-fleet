@@ -16,7 +16,7 @@
 .star-rating label:hover,
 .star-rating input:checked + label,
 .star-rating input:checked + label ~ label {
-    color: gold;
+    color: #f39c12;
     filter: drop-shadow(0 0 1px #b2b2b2);
 }
 
