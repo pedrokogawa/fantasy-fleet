@@ -68,10 +68,15 @@
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Write a Review</button>
+<!-- Modal -->
+<%= render "reviews/new" %>
 <!--REVIEWS SECTION-->
 <h2>Reviews</h2>
 <% @reviews.each do |review| %>
   <div class="review">
+    <%= link_to "x", vehicle_review_path(@vehicle, review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
     <h3><%= review.title %></h3>
     <p><%= review.comment %></p>
     <p>Rating: <%= review.rating %></p>

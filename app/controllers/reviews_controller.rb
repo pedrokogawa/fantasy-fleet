@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
-  before_action :set_booking, only: [:new, :create]
+  before_action :set_vehicle, only: [:new, :create, :destroy]
+  before_action :set_review, only: [:destroy]
 
   def new
     @review = Review.new
@@ -10,7 +11,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.rating = @review.rating.to_i
     if @review.save
-      redirect_to @booking, notice: 'Review was successfully created.'
+      redirect_to @vehicle, notice: 'Review was successfully created.'
     else
       render :new
       raise
@@ -18,15 +19,18 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @review = @booking.reviews.find(params[:id])
     @review.destroy
-    redirect_to @booking, notice: 'Review was successfully deleted.'
+    redirect_to @vehicle, notice: 'Review was successfully deleted.'
   end
 
   private
 
-  def set_booking
-    @booking = Booking.find(params[:booking_id])
+  def set_vehicle
+    @vehicle = Vehicle.find(params[:vehicle_id])
+  end
+
+  def set_review
+    @review = @vehicle.reviews.find(params[:id])
   end
 
   def review_params

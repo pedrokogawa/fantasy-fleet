@@ -18,6 +18,8 @@ class VehiclesController < ApplicationController
     def show
         @booking = Booking.new
         @reviews = @vehicle.reviews
+        @review = Review.new
+        @current_user_id = current_user.id
     end
 
     # new has @vehicle ~ test OK 
