@@ -36,7 +36,11 @@
       </div>
       <div class="col-12 mt-5">
         <div class="d-flex justify-content-between align-items-center">
-          <h1> Reviews</h1>
+          <% if @reviews_size.zero? %>
+            <h1> No Reviews Posted</h1>
+          <% else %>
+            <h1> Reviews</h1>
+          <% end %>
           <!-- IF current_user created a Booking with the Vehicle, user can create a Review once -->
           <div>
             <% if current_user %>
@@ -46,7 +50,7 @@
                 <% unless @existing_review %>
                   <!-- Button to trigger the review modal -->
                   <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                    Write a Review
+                    Write a Review <i class="fa-solid fa-pen-nib ms-1"></i>
                   </button>
                   <%= render "reviews/new" %> <!--RENDER ON REVIEWS FORM (NEW)-->
                 <% end %>
