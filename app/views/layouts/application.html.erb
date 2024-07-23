@@ -22,8 +22,18 @@
     <% end %>
     <%= render "shared/category_navbar" %>
     <!-- Devise alerts and notice -->
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if notice.present? %>
+      <div class="alert alert-success alert-dismissible fade show text-center fs-6" role="alert">
+      <%= notice %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end %>
+    <% if alert.present? %>
+      <div class="alert alert-danger alert-dismissible fade show text-center fs-6" role="alert">
+        <%= alert %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end %>
     <%= yield %>
     <!-- Footer -->
     <%= render "shared/footer" %>

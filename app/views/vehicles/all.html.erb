@@ -1,0 +1,30 @@
+<div class="container" id="index">
+  <div class="row">
+    <% @vehicles.each do |vehicle| %>
+      <div class="col-md-3">
+        <a href="<%= vehicle_path(vehicle) %>"> <!-- Link to vehicle details page -->
+          <div class="card mb-4 card-custom">
+            <div class="image-container">
+              <div class="image-wrapper">
+                <% if vehicle.photo.attached? %>
+                  <%= cl_image_tag vehicle.photo.key, class: "card-img-top" %>
+                <% else %>
+                  <%= image_tag 'https://tork.buzz/__export/1718370996032/sites/tork/img/2024/06/14/image_10.png_1203501776.png', class: "card-img-top" %>
+                <% end %>
+              </div>
+            </div>
+            <div class="card-body">
+              <strong><%= vehicle.name %></strong>
+              <p class="card-text">
+                <%= vehicle.location %><br>
+                <%= vehicle.category %> | <%= number_to_currency(vehicle.speed, unit: "", delimiter: ",", precision: 0) %>  km/h<br>
+                <%= vehicle.seats %> <i class="fa-solid fa-user-group"></i><br>
+                <strong><%= number_to_currency(vehicle.price_per_day, unit: "¥", delimiter: ",", precision: 0) %> JPY</strong> day
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    <% end %>
+  </div>
+</div>

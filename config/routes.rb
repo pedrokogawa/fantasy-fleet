@@ -9,14 +9,15 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  get 'vehicles/all', to: 'vehicles#all', as: 'all_vehicles'
+  get 'vehicles/category/:category', to: 'vehicles#category', as: 'category_vehicles'
   resources :vehicles
   resources :bookings, except: [ :destroy ] do
     member do
       patch :cancel
     end
   end
-
-  namespace :vendor do 
+  namespace :vendor do
     resources :bookings, only: [ :index, :show ] do
       member do
         patch :accept

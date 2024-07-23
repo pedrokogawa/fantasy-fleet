@@ -1,0 +1,18 @@
+<!-- app/views/vehicles/category.html.erb -->
+<div class="container">
+  <h1><%= @category.capitalize %> Category</h1>
+  <div class="row">
+    <% @vehicles.each do |vehicle| %>
+      <div class="col-md-3">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title"><%= vehicle.name %></h5>
+            <p class="card-text">Price: <%= number_to_currency(vehicle.price_per_day) %></p>
+            <!-- Add more vehicle details as needed -->
+            <a href="<%= vehicle_path(vehicle) %>" class="btn btn-primary">View Details</a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
