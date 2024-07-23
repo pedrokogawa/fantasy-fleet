@@ -11,7 +11,7 @@
       <% if current_user && @vehicle.user_id != current_user.id %>
         <div class="col-md-4 col-sm-12 col-xs-12">
           <div class="ms-5">
-            <%= render 'bookings/new', booking: @booking, vehicle: @vehicle %>
+            <%= render 'bookings/new', booking: @booking, vehicle: @vehicle %> <!--RENDER ON BOOKING FORM (NEW)-->
             <div style="width: 100%; height: 240px;" class="mt-4"
               data-controller="map"
               data-map-marker-lat-value="<%= @vehicle.latitude %>"
@@ -27,32 +27,34 @@
     <% end %>
   </div>
 </div>
-<!-- IF current_user created a Booking with the Vehicle, user can create a Review once -->
-<div class="container d-flex justify-content-end">
-  <% if current_user %>
-    <% @user_booking = current_user.bookings.find_by(vehicle_id: @vehicle.id, status: 'accepted') %>
-    <% if @user_booking %>
-      <% @existing_review = Review.find_by(user_id: @current_user_id, vehicle_id: @vehicle.id) %>
-      <% unless @existing_review %>
-        <!-- Button to trigger the review modal -->
-        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-          Write a Review
-        </button>
-        <%= render "reviews/new" %>
-      <% end %>
-    <% end %>
-  <% end %>
-</div>
 <!--REVIEWS SECTION-->
 <div class="container">
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 border-bottom">
-        <%= render "reviews/info_section" %>
+        <%= render "reviews/info_section" %> <!--RENDER ON REVIEWS GENERAL INFORMATION-->
       </div>
       <div class="col-12 mt-5">
-        <h1> Reviews</h1>
-        <%= render "reviews/show" %>
+        <div class="d-flex justify-content-between align-items-center">
+          <h1> Reviews</h1>
+          <!-- IF current_user created a Booking with the Vehicle, user can create a Review once -->
+          <div>
+            <% if current_user %>
+              <% @user_booking = current_user.bookings.find_by(vehicle_id: @vehicle.id, status: 'accepted') %>
+              <% if @user_booking %>
+                <% @existing_review = Review.find_by(user_id: @current_user_id, vehicle_id: @vehicle.id) %>
+                <% unless @existing_review %>
+                  <!-- Button to trigger the review modal -->
+                  <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Write a Review
+                  </button>
+                  <%= render "reviews/new" %> <!--RENDER ON REVIEWS FORM (NEW)-->
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <%= render "reviews/show" %> <!--RENDER ON REVIEWS SHOW by CARD-->
       </div>
     </div>
   </div>
