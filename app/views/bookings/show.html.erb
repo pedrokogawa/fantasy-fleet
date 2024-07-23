@@ -9,7 +9,7 @@
   <div class="w-50">
     <div class="d-flex justify-content-between">
       <h2 class="fw-bold m-0"><%= @booking.vehicle.name %></h2>
-      <% if @booking.status == "completed" %>
+      <% if @booking.status == "accepted" %>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Write a Review</button>
         <!-- Modal -->

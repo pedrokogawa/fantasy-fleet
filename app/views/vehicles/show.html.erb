@@ -1,51 +1,10 @@
-<div class="container border-bottom mb-5">
+<div class="container border-bottom mb-2">
   <div class="container-fluid">
-    <div class="row">
+    <div class="row mb-3">
       <div class="col-md-8 col-sm-12 col-xs-12">
         <div class="row">
           <div class="col-12">
-            <% if @vehicle.photo.attached? %>
-              <%= cl_image_tag @vehicle.photo.key, height: 1152, width: 2048, crop: :fill, class: 'img-fluid w-100' %>
-            <% else %>
-              <%= image_tag 'https://tork.buzz/__export/1718370996032/sites/tork/img/2024/06/14/image_10.png_1203501776.png', class: 'img-fluid w-100' %>
-            <% end %>
-          </div>
-          <div class="row mt-3">
-            <div class="col-5">
-              <p><strong>Name:</strong> <%= @vehicle.name %></p>
-              <p><strong>Category:</strong> <%= @vehicle.category %></p>
-              <p><strong>Location:</strong> <%= @vehicle.location %></p>
-              <p><strong>Listed By:</strong> <%= @vehicle.user.nickname %></p>
-            </div>
-            <div class="col-5">
-              <p><strong>Daily Price:</strong> <%= number_to_currency(@vehicle.price_per_day, unit: '¥', delimiter: ',', precision:0) %></p>
-              <p><strong>Seats:</strong> <%= @vehicle.seats %></p>
-              <p><strong>Speed:</strong> <%= @vehicle.speed %> <span class="text-muted">km/h</span></p>
-            </div>
-            <div class="col-2">
-              <% if @vehicle.availability == 'available' %>
-                <div data-controller="status-style">
-                  <span data-status-style-target="statusElement" data-status="<%= @vehicle.availability %>">
-                    Available
-                  </span>
-                </div>
-              <% else %>
-                <div data-controller="status-style">
-                  <span data-status-style-target="statusElement" data-status="<%= @vehicle.availability %>">
-                    Unavailable
-                  </span>
-                </div>
-              <% end %>
-            </div>
-            <div class="col-12">
-              <p><strong>Description:</strong> <%= @vehicle.description %></p>
-            </div>
-            <% if current_user && @vehicle.user_id == current_user.id %>
-              <div class="container">
-                <%= link_to "Edit this vehicle", edit_vehicle_path(@vehicle), class: "btn btn-dark fw-lighter fs-6" %>
-                <%= link_to "Delete vehicle", vehicle_path(@vehicle), class: "btn btn-dark fw-lighter fs-6", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-              </div>
-            <% end %>
+            <%= render "main" %> <!--RENDER ON MAIN VEHICLE INFORMATION-->
           </div>
         </div>
       </div>
@@ -68,20 +27,22 @@
     <% end %>
   </div>
 </div>
-<!-- IF current_user created a Booking with the Vechile, user can create a Review once -->
-<% if current_user %>
-  <% @user_booking = current_user.bookings.find_by(vehicle_id: @vehicle.id, status: 'accepted') %>
-  <% if @user_booking %>
-    <% @existing_review = Review.find_by(user_id: @current_user_id, vehicle_id: @vehicle.id) %>
-    <% unless @existing_review %>
-      <!-- Button to trigger the review modal -->
-      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        Write a Review
-      </button>
-      <%= render "reviews/new" %>
+<!-- IF current_user created a Booking with the Vehicle, user can create a Review once -->
+<div class="container d-flex justify-content-end">
+  <% if current_user %>
+    <% @user_booking = current_user.bookings.find_by(vehicle_id: @vehicle.id, status: 'accepted') %>
+    <% if @user_booking %>
+      <% @existing_review = Review.find_by(user_id: @current_user_id, vehicle_id: @vehicle.id) %>
+      <% unless @existing_review %>
+        <!-- Button to trigger the review modal -->
+        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          Write a Review
+        </button>
+        <%= render "reviews/new" %>
+      <% end %>
     <% end %>
   <% end %>
-<% end %>
+</div>
 <!--REVIEWS SECTION-->
 <div class="container">
   <div class="container-fluid">
