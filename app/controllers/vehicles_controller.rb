@@ -23,11 +23,11 @@ class VehiclesController < ApplicationController
         @average_rating = average_rating_calculation(@vehicle)
         @reviews_size = @reviews.size
             # Calculate the sizes for each rating
-        @rating_1 = (@reviews.where(rating: 1).size * 100 / @reviews_size).round
-        @rating_2 = (@reviews.where(rating: 2).size * 100 / @reviews_size).round
-        @rating_3 = (@reviews.where(rating: 3).size * 100 / @reviews_size).round
-        @rating_4 = (@reviews.where(rating: 4).size * 100 / @reviews_size).round
-        @rating_5 = (@reviews.where(rating: 5).size * 100 / @reviews_size).round
+        @rating_1 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 1).size * 100 / @reviews_size).round
+        @rating_2 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 2).size * 100 / @reviews_size).round
+        @rating_3 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 3).size * 100 / @reviews_size).round
+        @rating_4 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 4).size * 100 / @reviews_size).round
+        @rating_5 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 5).size * 100 / @reviews_size).round
     end
 
     # new has @vehicle ~ test OK 

@@ -2,13 +2,13 @@
   <% full_stars = @average_rating.to_i %>
   <% half_star = @average_rating % 1 != 0 %>
   <% empty_stars = 5 - full_stars - (half_star ? 1 : 0) %>
-  <% empty_stars.times do %>
-    <i class="fa-regular fa-star"></i>
+  <% full_stars.times do %>
+    <i class="fa fa-star"></i>
   <% end %>
   <% if half_star %>
     <i class="fa fa-star-half-alt" ></i>
   <% end %>
-  <% full_stars.times do %>
-    <i class="fa fa-star"></i>
+  <% empty_stars.times do %>
+    <i class="fa-regular fa-star"></i>
   <% end %>
 </div>

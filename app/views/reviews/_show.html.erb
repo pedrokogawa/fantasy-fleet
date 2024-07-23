@@ -1,9 +1,19 @@
 <% @reviews.each do |review| %>
-  <div class="review">
-    <%= link_to "x", vehicle_review_path(@vehicle, review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-    <h3><%= review.title %></h3>
-    <p><%= review.comment %></p>
-    <p>Rating: <%= review.rating %></p>
-    <p>Reviewed by: <%= review.user.first_name %></p>
+  <div class="card border-light mb-3">
+    <% @average_rating = review.rating %>
+    <div class="card-header d-flex justify-content-between">
+      <%= render "reviews/stars" %>
+      <div>
+        <span class="text-muted"><%= review.created_at.strftime("%B %d, %Y") %></span>
+        <%= link_to vehicle_review_path(@vehicle, review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, style: 'color: #ba0000;', class: 'ms-2' do %>
+          <i class="fa-solid fa-trash"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title"><%= review.title %></h3>
+      <p class="card-text text-secondary">" <%= review.comment %> "</p>
+      <footer class="blockquote-footer d-flex justify-content-end">from <%= review.user.first_name.capitalize %> <%= review.user.last_name.capitalize %></footer>
+    </div>
   </div>
 <% end %>
