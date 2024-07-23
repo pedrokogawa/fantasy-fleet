@@ -20,9 +20,9 @@
           <div class="image-wrapper">
             <%= link_to vendor_booking_path(booking) do %>
               <% if booking.vehicle.photo.attached? %>
-                <%= cl_image_tag booking.vehicle.photo.key, style:"height: 100px; width: 100px", class:"m-3 rounded border" %>
+                <%= cl_image_tag booking.vehicle.photo.key, width: 130, height: 100, crop: "auto", class:"m-3 rounded border" %>
               <% else %>
-                <%= image_tag 'https://tork.buzz/__export/1718370996032/sites/tork/img/2024/06/14/image_10.png_1203501776.png', style:"height: 100px; width: 100px", class:"m-3 rounded border" %>
+                <%= image_tag 'https://tork.buzz/__export/1718370996032/sites/tork/img/2024/06/14/image_10.png_1203501776.png', width: 130, height: 100, crop: "auto", class:"m-3 rounded border" %>
               <% end %>
             </div>
           <% end %>
