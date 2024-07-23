@@ -5,8 +5,10 @@
       <%= render "reviews/stars" %>
       <div>
         <span class="text-muted"><%= review.created_at.strftime("%B %d, %Y") %></span>
-        <%= link_to vehicle_review_path(@vehicle, review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, style: 'color: #ba0000;', class: 'ms-2' do %>
-          <i class="fa-solid fa-trash"></i>
+        <% if @current_user_id == review.user_id %>
+          <%= link_to vehicle_review_path(@vehicle, review), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, style: 'color: #ba0000;', class: 'ms-2' do %>
+            <i class="fa-solid fa-trash"></i>
+          <% end %>
         <% end %>
       </div>
     </div>
