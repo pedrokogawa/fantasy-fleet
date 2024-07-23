@@ -1,16 +1,59 @@
-<h1>Vendor::Bookings#index</h1>
-<p>Find me in app/views/vendor/bookings/index.html.erb</p>
-<h1>Manage your vehicle bookings</h1>
-<div class="container">
-  <% @bookings.each do |booking| %>
-    <p>Booking is at: <%= booking.start_date %> to <%= booking.end_date %></p>
-    <p>Total is: ¥<%= booking.total_price %></p>
-    <p>Status: <%= booking.status %></p>
-    <span>[ <%= booking.user_id %> ][ <%= booking.vehicle_id %> ]</span>
-    <% if booking.waiting? %>
-      <%= link_to 'Accept', accept_vendor_booking_path(booking), data: {turbo_method: :patch, turbo_confirm: 'Are you sure?' }, class: 'btn btn-success' %>
-      <%= link_to 'Refuse', refuse_vendor_booking_path(booking), data: {turbo_method: :patch, turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-    <% end %>
-    <%= link_to "Show details", vendor_booking_path(booking), class: 'btn btn-primary' %>
-  <% end %>
+<div data-controller="vendor-bookings-filter" class="hoverClass">
+  <div class="d-flex flex-column container mb-3">
+    <div class="mb-3">
+      <h2><strong>Bookings</strong></h2>
+    </div>
+    <div class="d-flex border-bottom buttons">
+      <p class="mx-3" data-action="click->vendor-bookings-filter#filter" data-status="waiting" style="cursor: pointer;">Waiting</p>
+      <p class="mx-3" data-action="click->vendor-bookings-filter#filter" data-status="accepted" style="cursor: pointer;">Accepted</p>
+      <p class="mx-3" data-action="click->vendor-bookings-filter#filter" data-status="ongoing" style="cursor: pointer;">Ongoing</p>
+      <p class="mx-3" data-action="click->vendor-bookings-filter#filter" data-status="refused" style="cursor: pointer;">Refused</p>
+      <p class="mx-3" data-action="click->vendor-bookings-filter#filter" data-status="canceled" style="cursor: pointer;">Canceled</p>
+      <p class="mx-3" data-action="click->vendor-bookings-filter#filter" data-status="completed" style="cursor: pointer;">Completed</p>
+      <p class="mx-3" data-action="click->vendor-bookings-filter#filter" data-status="all" style="cursor: pointer;">All</p>
+    </div>
+  </div>
+  <div class= "d-flex justify-content-center">
+    <div data-vendor-bookings-filter-target="cards">
+      <% @bookings.each do |booking| %>
+        <div class="d-flex border my-3 shadow bg-white p-2 rounded booking-card" data-status="<%= booking.status %>" style="height: auto; width: 1000px" >
+          <div class="image-wrapper">
+            <%= link_to vendor_booking_path(booking) do %>
+              <% if booking.vehicle.photo.attached? %>
+                <%= cl_image_tag booking.vehicle.photo.key, style:"height: 100px; width: 100px", class:"m-3 rounded border" %>
+              <% else %>
+                <%= image_tag 'https://tork.buzz/__export/1718370996032/sites/tork/img/2024/06/14/image_10.png_1203501776.png', style:"height: 100px; width: 100px", class:"m-3 rounded border" %>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="d-flex justify-content-between" style="height: auto; width: 1300px">
+            <div class="d-flex flex-column m-3 ps-3 flex-grow-1">
+              <p class="m-0 mb-3" style="color: grey"><strong><%= booking.vehicle.name %></strong></p>
+              <p class="m-0" style="color: grey"><%= booking.start_date.strftime("%d %b %Y") %> - <%= booking.end_date.strftime("%d %b %Y") %></p>
+              <h4 class="m-0" style="color: grey"> <%= number_to_currency(booking.total_price, unit: "¥", delimiter: ",", precision: 0) %></h4>
+            </div>
+            <div class="me-3 mt-3 pt-2 d-flex justify-content-between align-items-start">
+              <div data-controller="status-style" class="me-3">
+                <span data-status-style-target="statusElement" data-status="<%= booking.status %>" style="color: grey">
+                  <%= booking.status.capitalize %>
+                </span>
+              </div>
+              <div class="btn-group dropstart ms-3">
+                <button class="border-0 bg-white" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><%= link_to "Details", vendor_booking_path(booking), class:"dropdown-item" %></li>
+                  <% if booking.waiting? %>
+                    <li><%= link_to 'Accept', accept_vendor_booking_path(booking), data: {turbo_method: :patch, turbo_confirm: 'Are you sure?' }, class: 'dropdown-item' %></li>
+                    <li><%= link_to 'Refuse', refuse_vendor_booking_path(booking), data: {turbo_method: :patch, turbo_confirm: 'Are you sure?' }, class: 'dropdown-item' %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

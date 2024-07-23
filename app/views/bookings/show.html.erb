@@ -35,3 +35,11 @@
     </div>
   </div>
 </div>
+<div class="m-3 d-flex justify-content-center">
+  <div style="width: 1120px; height: 300px;"
+    data-controller="map"
+    data-map-marker-lat-value="<%= @booking.vehicle.latitude %>"
+    data-map-marker-lng-value="<%= @booking.vehicle.longitude %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+</div>
