@@ -17,7 +17,7 @@ class VehiclesController < ApplicationController
     # show has @vehicle ~ test OK 
     def show
         @booking = Booking.new
-        @reviews = Review.all.where(@vehicle.id == vehicle_id)
+        @reviews = @vehicle.reviews
     end
 
     # new has @vehicle ~ test OK 

@@ -68,3 +68,13 @@
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
+<!--REVIEWS SECTION-->
+<h2>Reviews</h2>
+<% @reviews.each do |review| %>
+  <div class="review">
+    <h3><%= review.title %></h3>
+    <p><%= review.comment %></p>
+    <p>Rating: <%= review.rating %></p>
+    <p>Reviewed by: <%= review.user.first_name %></p>
+  </div>
+<% end %>
