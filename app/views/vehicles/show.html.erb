@@ -18,6 +18,7 @@
               data-map-marker-lng-value="<%= @vehicle.longitude %>"
               data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
             </div>
+            <p class="text-justify text-muted mt-2"><strong>Location:</strong> <%= @vehicle.location %></p>
           </div>
         </div>
       <% end %>

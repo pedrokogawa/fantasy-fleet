@@ -5,34 +5,54 @@
 <% end %>
 </div>
 <div class="row mt-3">
-  <div class="col-5">
-    <p><strong>Name:</strong> <%= @vehicle.name %></p>
-    <p><strong>Category:</strong> <%= @vehicle.category %></p>
-    <p><strong>Location:</strong> <%= @vehicle.location %></p>
-    <p><strong>Listed By:</strong> <%= @vehicle.user.nickname %></p>
+  <div class="col-12">
+    <div class="row text-center">
+      <!-- Price per Day Column -->
+      <div class="col-5">
+        <p class="fs-1 fw-bold mb-0"><strong><%= number_to_currency(@vehicle.price_per_day, unit: '¥', delimiter: ',', precision:0) %></strong></p>
+        <p class="text-muted"><small>PER DAY</small></p>
+      </div>
+      <!-- Speed Column -->
+      <div class="col-4 border-start border-end">
+        <p class="fs-1 fw-bold mb-0 ms-3 d-flex align-items-center justify-content-center"><%= image_tag 'speedometer.svg', alt: 'Speedometer', style: 'width: 80px;', class: 'me-2' %><strong><%= @vehicle.speed %></strong></p>
+        <p class="text-muted"><small>KM / H</small></p>
+      </div>
+      <!-- Seats Column -->
+      <div class="col-3">
+        <div class="class= d-flex align-items-center justify-content-center">
+          <%= image_tag 'carseat.svg', alt: 'Carseat', style: 'width: 40px;' %>
+          <p class="fs-1 fw-bold mb-0 ms-2"><strong><%= @vehicle.seats %></strong></p>
+        </div>
+        <p class="text-muted"><small>SEATS</small></p>
+      </div>
+    </div>
   </div>
-  <div class="col-5">
-    <p><strong>Daily Price:</strong> <%= number_to_currency(@vehicle.price_per_day, unit: '¥', delimiter: ',', precision:0) %></p>
-    <p><strong>Seats:</strong> <%= @vehicle.seats %></p>
-    <p><strong>Speed:</strong> <%= @vehicle.speed %> <span class="text-muted">km/h</span></p>
+  <!-- DESCRIPTION Column -->
+  <div class="col-12 mt-4">
+    <div class="d-flex align-items-center justify-content-between">
+      <p class="mb-0"><strong>Category:</strong> <%= @vehicle.category %></p>
+      <p class="text-muted mb-0 d-flex align-items-center">
+        <i class="fa-solid fa-user me-2"></i>
+        <%= @vehicle.user.nickname.capitalize %>
+      </p>
+    </div>
+    <p class="text-justify"><strong>Description:</strong> <%= @vehicle.description %></p>
   </div>
-  <div class="col-2">
+  <!-- AVAILABILITY Column -->
+  <div class="d-flex justify-content-end align-items-end mt-3">
     <% if @vehicle.availability == 'available' %>
       <div data-controller="status-style">
-        <span data-status-style-target="statusElement" data-status="<%= @vehicle.availability %>">
+        <span data-status-style-target="statusElement" data-status="<%= @vehicle.availability %>" class="fs-3">
           Available
         </span>
       </div>
     <% else %>
       <div data-controller="status-style">
-        <span data-status-style-target="statusElement" data-status="<%= @vehicle.availability %>">
+        <span data-status-style-target="statusElement" data-status="<%= @vehicle.availability %>" class="fs-3">
           Unavailable
         </span>
       </div>
     <% end %>
-  </div>
-  <div class="col-12">
-    <p><strong>Description:</strong> <%= @vehicle.description %></p>
   </div>
   <% if current_user && @vehicle.user_id == current_user.id %>
     <div class="container">
