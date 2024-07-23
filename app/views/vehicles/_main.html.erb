@@ -8,17 +8,17 @@
   <div class="col-12">
     <div class="row text-center">
       <!-- Price per Day Column -->
-      <div class="col-5">
+      <div class="col-md-5 col-sm-12">
         <p class="fs-1 fw-bold mb-0"><strong><%= number_to_currency(@vehicle.price_per_day, unit: '¥', delimiter: ',', precision:0) %></strong></p>
         <p class="text-muted"><small>PER DAY</small></p>
       </div>
       <!-- Speed Column -->
-      <div class="col-4 border-start border-end">
+      <div class="col-md-4 col-sm-12 border-start border-end">
         <p class="fs-1 fw-bold mb-0 ms-3 d-flex align-items-center justify-content-center"><%= image_tag 'speedometer.svg', alt: 'Speedometer', style: 'width: 80px;', class: 'me-2' %><strong><%= @vehicle.speed %></strong></p>
         <p class="text-muted"><small>KM / H</small></p>
       </div>
       <!-- Seats Column -->
-      <div class="col-3">
+      <div class="col-md-3 col-sm-12">
         <div class="class= d-flex align-items-center justify-content-center">
           <%= image_tag 'carseat.svg', alt: 'Carseat', style: 'width: 40px;' %>
           <p class="fs-1 fw-bold mb-0 ms-2"><strong><%= @vehicle.seats %></strong></p>
