@@ -80,7 +80,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <%= render 'devise/sessions/signin_modal', resource: resource_class.new, resource_name: resource_name %> <!--RENDER LOGIN FORM (devise >> sessions >> _signin_modal.html.erb)-->
+        <%= render 'devise/sessions/signin_modal', resource: resource_class.new, resource_name: resource_name, devise_mapping: Devise.mappings[:user] %> <!--RENDER LOGIN FORM (devise >> sessions >> _signin_modal.html.erb)-->
       </div>
     </div>
   </div>
