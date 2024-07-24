@@ -1,0 +1,13 @@
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), method: :post) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :email, autofocus: true, label: 'Email', input_html: { class: 'form-control' } %>
+    <%= f.input :password, label: 'Password', input_html: { class: 'form-control' } %>
+  </div>
+  <div class="form-actions my-5">
+    <%= f.button :submit, 'Log in', class: 'btn btn-dark w-100' %>
+  </div>
+  <div class="modal-footer">
+    <p>Don't have an account yet?</p>
+    <%= link_to "Sign Up", new_user_registration_path %>
+  </div>
+<% end %>
