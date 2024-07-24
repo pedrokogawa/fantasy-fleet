@@ -19,7 +19,7 @@ class VehiclesController < ApplicationController
         @booking = Booking.new
         @reviews = @vehicle.reviews
         @review = Review.new
-        @current_user_id = current_user.id
+        @current_user_id = current_user.id if user_signed_in?
         @average_rating = average_rating_calculation(@vehicle)
         @reviews_size = @reviews.size
             # Calculate the sizes for each rating

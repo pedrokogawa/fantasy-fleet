@@ -39,7 +39,7 @@
     <p class="text-justify"><strong>Description:</strong> <%= @vehicle.description %></p>
   </div>
   <!-- AVAILABILITY Column -->
-  <div class="d-flex justify-content-end align-items-end mt-3">
+  <div class="d-flex justify-content-end align-items-end mt-3 mb-4">
     <% if @vehicle.availability == 'available' %>
       <div data-controller="status-style">
         <span data-status-style-target="statusElement" data-status="<%= @vehicle.availability %>" class="fs-3">

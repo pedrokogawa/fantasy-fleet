@@ -4,28 +4,33 @@
       <div class="col-md-8 col-sm-12 col-xs-12">
         <div class="row">
           <div class="col-12">
-            <%= render "main" %> <!--RENDER ON MAIN VEHICLE INFORMATION-->
+            <%= render "main" %> <!--RENDER ON MAIN VEHICLE INFORMATION (vehicles >> _main.html.erb)-->
           </div>
         </div>
       </div>
       <% if current_user && @vehicle.user_id != current_user.id %>
         <div class="col-md-4 col-sm-12 col-xs-12">
           <div class="ms-5">
-            <%= render 'bookings/new', booking: @booking, vehicle: @vehicle %> <!--RENDER ON BOOKING FORM (NEW)-->
-            <div style="width: 100%; height: 240px;" class="mt-4"
-              data-controller="map"
-              data-map-marker-lat-value="<%= @vehicle.latitude %>"
-              data-map-marker-lng-value="<%= @vehicle.longitude %>"
-              data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+            <h1>Booking form</h1>
+            <%= render 'bookings/new', booking: @booking, vehicle: @vehicle %> <!--RENDER ON BOOKING FORM (booking >>_new.html.erb)-->
+            <%= render 'map' %> <!--RENDER SHOW MAP (vehicles >>_map.html.erb)-->
+          </div>
+        </div>
+      <% end %>
+      <% unless current_user %>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+          <div class="ms-5">
+            <a class="btn btn-dark w-100 pulse" href="/users/sign_in" role="button">Sign in to Book</a>
+          </div>
+          <div class="ms-5">
+            <div style="pointer-events: none; opacity: 0.5;">
+              <%= render 'bookings/new', booking: @booking, vehicle: @vehicle %> <!--RENDER ON BOOKING FORM (booking >>_new.html.erb)-->
             </div>
-            <p class="text-justify text-muted mt-2"><strong>Location:</strong> <%= @vehicle.location %></p>
+            <%= render 'map' %> <!--RENDER SHOW MAP (vehicles >>_map.html.erb)-->
           </div>
         </div>
       <% end %>
     </div>
-    <% unless current_user %>
-      <a class="btn btn-primary" href="/users/sign_in" role="button">Sign in to book</a>
-    <% end %>
   </div>
 </div>
 <!--REVIEWS SECTION-->
@@ -33,7 +38,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12 border-bottom">
-        <%= render "reviews/info_section" %> <!--RENDER ON REVIEWS GENERAL INFORMATION-->
+        <%= render "reviews/info_section" %> <!--RENDER ON REVIEWS GENERAL INFORMATION (reviews >>_info_section.html.erb)-->
       </div>
       <div class="col-12 mt-5">
         <div class="d-flex justify-content-between align-items-center">
@@ -53,13 +58,13 @@
                   <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     Write a Review <i class="fa-solid fa-pen-nib ms-1"></i>
                   </button>
-                  <%= render "reviews/new" %> <!--RENDER ON REVIEWS FORM (NEW)-->
+                  <%= render "reviews/new" %> <!--RENDER ON REVIEWS FORM (reviews >>_new.html.erb)-->
                 <% end %>
               <% end %>
             <% end %>
           </div>
         </div>
-        <%= render "reviews/show" %> <!--RENDER ON REVIEWS SHOW by CARD-->
+        <%= render "reviews/show" %> <!--RENDER ON REVIEWS SHOW by CARD (reviews >>_show.html.erb)-->
       </div>
     </div>
   </div>
