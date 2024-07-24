@@ -1,0 +1,62 @@
+<% if @vehicle.photo.attached? %>
+  <%= cl_image_tag @vehicle.photo.key, height: 1152, width: 2048, crop: :fill, class: 'img-fluid w-100' %>
+<% else %>
+  <%= image_tag 'https://tork.buzz/__export/1718370996032/sites/tork/img/2024/06/14/image_10.png_1203501776.png', class: 'img-fluid w-100' %>
+<% end %>
+</div>
+<div class="row mt-3">
+  <div class="col-12">
+    <div class="row text-center">
+      <!-- Price per Day Column -->
+      <div class="col-md-5 col-sm-12">
+        <p class="fs-1 fw-bold mb-0"><strong><%= number_to_currency(@vehicle.price_per_day, unit: '¥', delimiter: ',', precision:0) %></strong></p>
+        <p class="text-muted"><small>PER DAY</small></p>
+      </div>
+      <!-- Speed Column -->
+      <div class="col-md-4 col-sm-12 border-start border-end">
+        <p class="fs-1 fw-bold mb-0 ms-3 d-flex align-items-center justify-content-center"><%= image_tag 'speedometer.svg', alt: 'Speedometer', style: 'width: 80px;', class: 'me-2' %><strong><%= @vehicle.speed %></strong></p>
+        <p class="text-muted"><small>KM / H</small></p>
+      </div>
+      <!-- Seats Column -->
+      <div class="col-md-3 col-sm-12">
+        <div class="class= d-flex align-items-center justify-content-center">
+          <%= image_tag 'carseat.svg', alt: 'Carseat', style: 'width: 40px;' %>
+          <p class="fs-1 fw-bold mb-0 ms-2"><strong><%= @vehicle.seats %></strong></p>
+        </div>
+        <p class="text-muted"><small>SEATS</small></p>
+      </div>
+    </div>
+  </div>
+  <!-- DESCRIPTION Column -->
+  <div class="col-12 mt-4">
+    <div class="d-flex align-items-center justify-content-between">
+      <p class="mb-0"><strong>Category:</strong> <%= @vehicle.category %></p>
+      <p class="text-muted mb-0 d-flex align-items-center">
+        <i class="fa-solid fa-user me-2"></i>
+        <%= @vehicle.user.nickname.capitalize %>
+      </p>
+    </div>
+    <p class="text-justify"><strong>Description:</strong> <%= @vehicle.description %></p>
+  </div>
+  <!-- AVAILABILITY Column -->
+  <div class="d-flex justify-content-end align-items-end mt-3 mb-4">
+    <% if @vehicle.availability == 'available' %>
+      <div data-controller="status-style">
+        <span data-status-style-target="statusElement" data-status="<%= @vehicle.availability %>" class="fs-3">
+          Available
+        </span>
+      </div>
+    <% else %>
+      <div data-controller="status-style">
+        <span data-status-style-target="statusElement" data-status="<%= @vehicle.availability %>" class="fs-3">
+          Unavailable
+        </span>
+      </div>
+    <% end %>
+  </div>
+  <% if current_user && @vehicle.user_id == current_user.id %>
+    <div class="container">
+      <%= link_to "Edit this vehicle", edit_vehicle_path(@vehicle), class: "btn btn-dark fw-lighter fs-6" %>
+      <%= link_to "Delete vehicle", vehicle_path(@vehicle), class: "btn btn-dark fw-lighter fs-6", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+    </div>
+  <% end %>

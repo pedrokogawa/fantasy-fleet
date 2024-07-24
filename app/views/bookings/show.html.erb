@@ -9,8 +9,15 @@
   <div class="w-50">
     <div class="d-flex justify-content-between">
       <h2 class="fw-bold m-0"><%= @booking.vehicle.name %></h2>
-      <%= link_to bookings_path, class: 'btn btn-dark', style: "width: 40px" do %>
-        <i class="fa-solid fa-angles-left" style="color: #f2f6fd;"></i>
+      <% if @booking.status == "accepted" %>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Write a Review</button>
+        <!-- Modal -->
+        <%= render "reviews/new" %>
+      <% else %>
+        <%= link_to bookings_path, class: 'btn btn-dark', style: "width: 40px" do %>
+          <i class="fa-solid fa-angles-left" style="color: #f2f6fd;"></i>
+        <% end %>
       <% end %>
     </div>
     <div data-controller="status-style" class="mt-3">

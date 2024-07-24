@@ -26,7 +26,14 @@
             </ul>
           <% else %>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <li><%= link_to "Sign In", new_user_session_path, class: "dropdown-item bg-light text-primary bg-gradient" %></li>
+              <li>
+                <a class="dropdown-item bg-light text-primary bg-gradient" 
+                  data-bs-toggle="modal" 
+                  data-bs-target="#loginModal"
+                  style="cursor: pointer;">
+                  Sign In
+                </a>
+              </li>
               <li><%= link_to "Register", new_user_registration_path, class: "dropdown-item bg-light bg-gradient" %></li>
             </ul>
           <% end %>
@@ -35,3 +42,4 @@
     </form>
   </div>
 </nav>
+<%= render "devise/sessions/signin_modal" %> <!-- RENDER Sign in Modal (deivse >> sessions >> _signin_modal.html.erb)-->

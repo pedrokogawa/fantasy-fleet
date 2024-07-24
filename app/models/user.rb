@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :vehicles, dependent: :destroy
   has_many :bookings
+  has_many :reviews
   has_many :bookings_as_vendor, through: :vehicles, source: :bookings
 
   has_one_attached :photo

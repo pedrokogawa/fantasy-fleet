@@ -18,6 +18,17 @@ class VehiclesController < ApplicationController
     # show has @vehicle ~ test OK 
     def show
         @booking = Booking.new
+        @reviews = @vehicle.reviews
+        @review = Review.new
+        @current_user_id = current_user.id if user_signed_in?
+        @average_rating = average_rating_calculation(@vehicle)
+        @reviews_size = @reviews.size
+            # Calculate the sizes for each rating
+        @rating_1 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 1).size * 100 / @reviews_size).round
+        @rating_2 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 2).size * 100 / @reviews_size).round
+        @rating_3 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 3).size * 100 / @reviews_size).round
+        @rating_4 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 4).size * 100 / @reviews_size).round
+        @rating_5 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 5).size * 100 / @reviews_size).round
     end
 
     # new has @vehicle ~ test OK 
@@ -49,6 +60,16 @@ class VehiclesController < ApplicationController
     def destroy
         @vehicle.destroy
         redirect_to vehicles_path, status: :see_other
+    end
+
+    # automatically calculate AVERAGE RATING on all reviews
+    def average_rating_calculation(vehicle)
+        reviews = vehicle.reviews
+        return 0 if reviews.empty?
+
+        total_rating = reviews.sum(:rating)
+        average_rating = total_rating.to_f / reviews.size
+        average_rating.round(1)
     end
 
     private

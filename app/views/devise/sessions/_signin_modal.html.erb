@@ -1,0 +1,35 @@
+<% resource_name = :user %>
+<% resource = User.new %>
+<% resource_class = User %>
+<% devise_mapping = Devise.mappings[:user] %>
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title" id="loginModalLabel">Sign In</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), method: :post) do |f| %>
+          <%= hidden_field_tag :redirect_id, params[:id] || root_path %> <!-- get the path -->
+          <div class="form-inputs">
+            <%= f.input :email, autofocus: true, label: 'Email', input_html: { class: 'form-control' } %>
+            <%= f.input :password, label: 'Password', input_html: { class: 'form-control' } %>
+          </div>
+          <div class="form-actions my-5">
+            <%= f.button :submit, 'Log in', class: 'btn btn-dark w-100' %>
+            <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+              <div class="d-flex justify-content-end">
+                <%= link_to "Forgot your password?", new_password_path(resource_name), class: "text-secondary" %>
+              </div>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+            <p>Don't have an account yet?</p>
+            <%= link_to "Sign Up", new_user_registration_path %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

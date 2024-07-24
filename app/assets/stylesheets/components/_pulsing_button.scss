@@ -1,0 +1,18 @@
+.pulse{
+    animation: animate-pulse 2.5s linear infinite;
+}
+@keyframes animate-pulse{
+    0%{
+        box-shadow: 0 0 0 0 rgba(23, 23, 23, 0.7),  0 0 0 0 rgba(23, 23, 23, 0.7);
+    }
+    40%{
+        box-shadow: 0 0 0 25px rgba(79, 79, 79, 0),  0 0 0 0 rgba(79, 79, 79, 0);
+    }
+    80%{
+        box-shadow: 0 0 0 25px rgba(120, 120, 120, 0),  0 0 0 15px rgba(120, 120, 120, 0);
+    }
+    100%{
+        box-shadow: 0 0 0 0 rgba(255, 247, 245, 0),  0 0 0 15px rgba(255, 247, 245, 0);
+    }
+    
+}

@@ -1,0 +1,37 @@
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Add a Review</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for([ @vehicle, @review ]) do |f| %>
+          <div class="container text-center">
+            <div class="row justify-content-center">
+              <div class="col-auto">
+                <div class="star-rating">
+                  <% (1..5).reverse_each do |i| %>
+                    <input type="radio" id="star<%= i %>" name="review[rating]" value="<%= i %>" 
+          <%= 'checked' if @review.rating == i %> />
+                    <label for="star<%= i %>" title="<%=i%>">
+                      <i class="fa fa-star"></i>
+                    </label>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <%= f.input :title, label: "Title:" %>
+          <%= f.input :comment, label: "Comment:" %>
+          <%= f.hidden_field :user_id, value: @current_user_id %>
+          <%= f.hidden_field :vehicle_id, value: @vehicle.id %>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <%= f.submit "Create Review", class: 'btn btn-dark' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
