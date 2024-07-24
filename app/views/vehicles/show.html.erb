@@ -21,6 +21,7 @@
         <div class="col-md-4 col-sm-12 col-xs-12">
           <div class="ms-5"> <!-- ########## SIGN IN BUTTON with MODAL ##########-->
             <button type="button" class="btn btn-dark w-100 pulse mb-4" data-bs-toggle="modal" data-bs-target="#loginModal">Sign in to Book</button>
+            <%= render "modal" %> <!-- RENDER Sign in Modal (vehicles >> _modal.html.erb)-->
           </div>
           <div class="ms-5">
             <div style="pointer-events: none; opacity: 0.5;">
@@ -65,22 +66,6 @@
           </div>
         </div>
         <%= render "reviews/show" %> <!--RENDER ON REVIEWS SHOW by CARD (reviews >>_show.html.erb)-->
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Sign in Modal -->
-<% resource_name = :user %>
-<% resource_class = User %>
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header bg-dark text-white">
-        <h5 class="modal-title" id="loginModalLabel">Sign In</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <%= render 'devise/sessions/signin_modal', resource: resource_class.new, resource_name: resource_name, devise_mapping: Devise.mappings[:user] %> <!--RENDER LOGIN FORM (devise >> sessions >> _signin_modal.html.erb)-->
       </div>
     </div>
   </div>
