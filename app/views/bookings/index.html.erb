@@ -1,10 +1,21 @@
-<div class="container">
-  <h4 class="mb-3">You have rented</h4>
+<div class="container" style="min-height: 215px;">
+  <div class="mb-3">
+    <h2><strong>You have rented</strong></h2>
+  </div>
+  <div class="d-flex border-bottom buttons">
+    <p class="mx-3" data-action="click->vendor-bookings-filter#filter" data-status="waiting" style="cursor: pointer;">Waiting</p>
+    <p class="mx-3" data-action="click->vendor-bookings-filter#filter" data-status="accepted" style="cursor: pointer;">Accepted</p>
+    <p class="mx-3" data-action="click->vendor-bookings-filter#filter" data-status="ongoing" style="cursor: pointer;">Ongoing</p>
+    <p class="mx-3" data-action="click->vendor-bookings-filter#filter" data-status="refused" style="cursor: pointer;">Refused</p>
+    <p class="mx-3" data-action="click->vendor-bookings-filter#filter" data-status="canceled" style="cursor: pointer;">Canceled</p>
+    <p class="mx-3" data-action="click->vendor-bookings-filter#filter" data-status="completed" style="cursor: pointer;">Completed</p>
+    <p class="mx-3" data-action="click->vendor-bookings-filter#filter" data-status="all" style="cursor: pointer;">All</p>
+  </div>
   <div>
     <div class="row">
       <% @bookings.each do |booking| %>
         <div class="col-md-3">
-          <a href="<%= booking_path(booking) %>"> <!-- Link to vehicle details page -->
+          <a href="<%= booking_path(booking) %>" class="hoverClass"> <!-- Link to vehicle details page -->
             <div class="card mb-4 card-custom" style="height:350px ; width: 226px">
               <div class="image-container">
                 <div class="image-wrapper">

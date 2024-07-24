@@ -1,9 +1,62 @@
-<h1>Vendor::Bookings#show</h1>
-<p>Find me in app/views/vendor/bookings/show.html.erb</p>
-<%= link_to "Show all bookings", vendor_bookings_path, class: 'btn btn-primary' %>
 <div class="container">
-  <p>Booking is at: <%= @booking.start_date %> to <%= @booking.end_date %></p>
-  <p>Total is: ¥<%= @booking.total_price %></p>
-  <p>Status: <%= @booking.status %></p>
-  <span>[ <%= @booking.user_id %> ][ <%= @booking.vehicle_id %> ]</span>
+  <h2>Booking Details</h2>
+  <p>Posted on <%= @booking.created_at.strftime("%d %b %Y") %></p>
+  <div>
+    <div class="d-flex border my-3 shadow bg-white p-2 rounded" style="height: auto; width: 1000px" >
+      <div class="image-wrapper">
+        <% if @booking.vehicle.photo.attached? %>
+          <%= cl_image_tag @booking.vehicle.photo.key, crop: :fill ,height: 350, width: 500, class:"m-3 rounded border" %>
+        <% else %>
+          <%= image_tag 'https://tork.buzz/__export/1718370996032/sites/tork/img/2024/06/14/image_10.png_1203501776.png', crop: "fill" , height: 350, width: 500, class:"m-3 rounded border" %>
+        <% end %>
+      </div>
+      <div class="m-3" style="height: auto; width: 1300px">
+        <div class="d-flex flex-column">
+          <div class="d-flex justify-content-between">
+            <div class="d-flex flex-column flex-grow-1">
+              <div class="d-flex justify-content-between">
+                <h5 class="fw-bold m-0"><%= @booking.vehicle.name %></h5>
+              </div>
+              <div data-controller="status-style" class="mt-3">
+                <span data-status-style-target="statusElement" data-status="<%= @booking.status %>">
+                  <%= @booking.status.capitalize %>
+                </span>
+              </div>
+              <div class="d-flex align-items-end">
+                <h4 class="fw-bold my-3"><%= number_to_currency(@booking.total_price, unit: "¥", delimiter: ",", precision: 0) %></h4>
+                <p class="my-3 ms-1 text-secondary" style="font-size:10px"> <%= @booking.total_price/@booking.vehicle.price_per_day %> days</p>
+              </div>
+              <div class="d-flex mb-2">
+                <div class="border me-2 p-1 rounded">
+                  <%= @booking.start_date %>
+                </div>
+                <div class="border p-1 rounded">
+                  <%= @booking.end_date %>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex flex-column align-items-end ">
+              <%= link_to "Return all Bookings", vendor_bookings_path, class: 'btn btn-dark fw-lighter fs-6 my-1 py-0', style: 'font-size: 14px !important; width: 200px'%>
+              <%= link_to "Go to this Vehicle", vehicle_path(@booking.vehicle), class: "btn btn-dark fw-lighter fs-6 mb-1 py-0", style: 'font-size: 14px !important; width: 200px' %>
+              <% if @booking.waiting? %>
+                <%= link_to 'Accept', accept_vendor_booking_path(@booking), data: {turbo_method: :patch, turbo_confirm: 'Are you sure?' }, class: 'btn btn-dark fw-lighter fs-6 mb-1 py-0', style: 'font-size: 14px !important; width: 200px' %>
+                <%= link_to 'Refuse', refuse_vendor_booking_path(@booking), data: {turbo_method: :patch, turbo_confirm: 'Are you sure?' }, class: 'btn btn-dark fw-lighter fs-6 mb-1 py-0', style: 'font-size: 14px !important; width: 200px' %>
+              <% end %>
+            </div>
+          </div>
+          <div class="d-flex flex-column">
+            <div class="border p-1 mb-2 rounded">
+              <p class="m-0"><strong>To:</strong> <%= @booking.user.first_name %></p>
+            </div>
+            <div class="border p-1 mb-2 rounded">
+              <p class="m-0"><strong>Address:</strong> <%= @booking.vehicle.location %></p>
+            </div>
+            <div class="border p-2 rounded my-1">
+              <%= @booking.vehicle.description %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
