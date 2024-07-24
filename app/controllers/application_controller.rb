@@ -8,4 +8,11 @@ class ApplicationController < ActionController::Base
     # For additional in app/views/devise/registrations/edit.html.erb
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :birthday, :nickname, :license_number])
   end
+
+  # Redirect to vehicle page or default to root_path
+  def after_sign_in_path_for(resource)
+    redirect_url = vehicle_path(:redirect_id) || root_path
+    redirect_url
+  end
+
 end

@@ -1,4 +1,5 @@
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), method: :post) do |f| %>
+  <%= hidden_field_tag :redirect_id, params[:id] || root_path %> <!-- get the path -->
   <div class="form-inputs">
     <%= f.input :email, autofocus: true, label: 'Email', input_html: { class: 'form-control' } %>
     <%= f.input :password, label: 'Password', input_html: { class: 'form-control' } %>
