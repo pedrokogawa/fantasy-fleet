@@ -10,6 +10,9 @@ class Vendor::BookingsController < ApplicationController
   def accept
     @booking.accepted!
     redirect_to vendor_bookings_path, notice: "Booking was successfully accepted!"
+    @disabled_dates = Booking.where(vehicle_id: @booking.vehicle_id).map do |booking|
+      { from: booking.start_date.to_s, to: booking.end_date.to_s }
+    end
   end
 
   def refuse
