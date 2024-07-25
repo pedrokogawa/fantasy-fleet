@@ -88,7 +88,7 @@ puts "Destroying all Vehicles"
 Vehicle.destroy_all
 puts "Destroyed Vehicles"
 
-# !!!!! BOOKINGS DELETE ALL !!!!!! 
+# !!!!! BOOKINGS DELETE ALL !!!!!!
 puts "Deleting all Bookings"
 Booking.destroy_all
 puts "Deleted Bookings."
@@ -110,7 +110,7 @@ puts "created #{vehicle1.name}"
 vehicle2 = Vehicle.create!(
 
   name: "BatMotor",
-  category: "Bicycle",
+  category: "Motorcycle",
   seats: 2,
   speed: 250,
   price_per_day: 90000,
@@ -162,7 +162,7 @@ image5 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721444764
 puts "created #{vehicle5.name}"
 vehicle6 = Vehicle.create!(
   name: "CIABoat",
-  category: "Boat",
+  category: "Watercraft",
   seats: 10,
   speed: 400,
   price_per_day: 200000,
@@ -175,7 +175,7 @@ image6 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721444767
 puts "created #{vehicle6.name}"
 vehicle7 = Vehicle.create!(
   name: "BlackJet",
-  category: "Airplane",
+  category: "Aircraft",
   seats: 25,
   speed: 600,
   price_per_day: 300000,
@@ -188,7 +188,7 @@ image7 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721444762
 puts "created #{vehicle7.name}"
 vehicle8 = Vehicle.create!(
   name: "Celestia",
-  category: "Spaceship",
+  category: "Spacecraft",
   seats: 4,
   speed: 720,
   price_per_day: 800000,
@@ -214,7 +214,7 @@ image9 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721444766
 puts "created #{vehicle9.name}"
 vehicle10 = Vehicle.create!(
   name: "Panther",
-  category: "Bicycle",
+  category: "Motorcycle",
   seats: 1,
   speed: 850,
   price_per_day: 450000,
@@ -266,7 +266,7 @@ image13 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v172144476
 puts "created #{vehicle13.name}"
 vehicle14 = Vehicle.create!(
   name: "GoingMerry",
-  category: "Boat",
+  category: "Watercraft",
   seats: 25,
   speed: 200,
   price_per_day: 180000,
@@ -279,7 +279,7 @@ image14 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v172130886
 puts "created #{vehicle14.name}"
 vehicle15 = Vehicle.create!(
   name: "SpiderCopter",
-  category: "Airplane",
+  category: "Aircraft",
   seats: 2,
   speed: 670,
   price_per_day: 830000,
@@ -292,7 +292,7 @@ image15 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v172144476
 puts "created #{vehicle15.name}"
 vehicle16 = Vehicle.create!(
   name: "Aurora",
-  category: "Spaceship",
+  category: "Spacecraft",
   seats: 2,
   speed: 900,
   price_per_day: 62000,
@@ -318,7 +318,7 @@ image17 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v172130798
 puts "created #{vehicle17.name}"
 vehicle18 = Vehicle.create!(
   name: "Creamsen",
-  category: "Airplane",
+  category: "Aircraft",
   seats: 4,
   speed: 450,
   price_per_day: 150000,
@@ -331,7 +331,7 @@ image18 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v172144476
 puts "created #{vehicle18.name}"
 vehicle19 = Vehicle.create!(
   name: "Valor",
-  category: "Spaceship",
+  category: "Spacecraft",
   seats: 2,
   speed: 1050,
   price_per_day: 450000,
