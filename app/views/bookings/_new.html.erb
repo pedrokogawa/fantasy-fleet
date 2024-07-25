@@ -1,4 +1,4 @@
-<%= simple_form_for @booking, html: { data: { controller: 'date-calculator', price_per_day: @vehicle.price_per_day } } do |f| %>
+<%= simple_form_for @booking, html: { data: { controller: 'date-calculator', price_per_day: @vehicle.price_per_day, datepicker_disabled_dates: @disabled_dates.to_json } } do |f| %>
   <div class="form-inputs">
     <div class="mb-3">
       <label class="form-label">Vehicle:</label>
