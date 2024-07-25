@@ -38,6 +38,14 @@ export default class extends Controller {
 		this.markersValue.forEach((marker) => {
 			const customMarker = document.createElement("div");
 			customMarker.innerHTML = marker.marker_html;
+			customMarker.style.backgroundColor = "#252422"; /* Cor de fundo branco */
+			customMarker.style.borderRadius = "50%";
+			customMarker.style.display = "flex";
+			customMarker.style.justifyContent = "center";
+			customMarker.style.alignItems = "center";
+			customMarker.style.boxShadow = "0 0 15px rgba(0, 0, 0, 0.1)";
+			customMarker.style.width = "30px";
+			customMarker.style.height = "30px";
 			const popup = new mapboxgl.Popup().setHTML(marker.info_window_html);
 			new mapboxgl.Marker({ element: customMarker })
 				.setLngLat([marker.lng, marker.lat])
