@@ -68,6 +68,9 @@ class VehiclesController < ApplicationController
         @rating_3 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 3).size * 100 / @reviews_size).round
         @rating_4 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 4).size * 100 / @reviews_size).round
         @rating_5 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 5).size * 100 / @reviews_size).round
+        @disabled_dates = Booking.where(vehicle_id: @vehicle.id).map do |booking| #DISABLING BOOKED DATES for the CALENDAR
+          { from: booking.start_date.to_s, to: booking.end_date.to_s }
+        end
     end
 
     # new has @vehicle ~ test OK

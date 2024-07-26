@@ -15,7 +15,7 @@ class BookingsController < ApplicationController
 
     #new form is at /bookings/new ~ test OK
     def new
-        @booking = Booking.new
+      @booking = Booking.new
     end
 
     def create
