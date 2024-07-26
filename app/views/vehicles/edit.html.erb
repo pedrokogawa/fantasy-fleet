@@ -4,7 +4,7 @@
     <div class="container">
       <%= simple_form_for @vehicle do |f| %>
         <%= f.input :name, input_html: { maxlength: 50 } %>
-        <%= f.input :category, as: :select, collection: [['Car', 'car'], ['Bicycle', 'bicycle'], ['ATV', 'atv'], ['Truck', 'truck'], ['Van', 'van'], ['Boat', 'boat'], ['Airplane', 'airplane'], ['Spaceship', 'spaceship']] %>
+        <%= f.input :category, as: :select, collection: [['Car', 'car'], ['Motorcycle', 'motorcycle'], ['ATV', 'atv'], ['Truck', 'truck'], ['Van', 'van'], ['Watercraft', 'watercraft'], ['Aircraft', 'aircraft'], ['Spacecraft', 'spacecraft']] %>
         <%= f.input :seats, input_html: { min: 1 } %>
         <%= f.input :speed, input_html: { min: 0 } %>
         <%= f.input :price_per_day, input_html: { min: 0 } %>
