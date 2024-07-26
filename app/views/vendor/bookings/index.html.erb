@@ -1,4 +1,4 @@
-<div data-controller="vendor-bookings-filter" class="hoverClass">
+<div data-controller="vendor-bookings-filter" class="hoverClass" style="min-height: 215px;">
   <div class="d-flex flex-column container mb-3">
     <div class="mb-3">
       <h2><strong>Bookings</strong></h2>
@@ -16,7 +16,7 @@
   <div class= "d-flex justify-content-center">
     <div data-vendor-bookings-filter-target="cards">
       <% @bookings.each do |booking| %>
-        <div class="d-flex border my-3 shadow bg-white p-2 rounded booking-card" data-status="<%= booking.status %>" style="height: auto; width: 1000px" >
+        <div class="d-flex border my-3 shadow bg-white p-2 rounded booking-card vendor-card-booking" data-status="<%= booking.status %>" style="height: auto; width: 1000px" >
           <div class="image-wrapper">
             <%= link_to vendor_booking_path(booking) do %>
               <% if booking.vehicle.photo.attached? %>
@@ -45,8 +45,14 @@
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <li><%= link_to "Details", vendor_booking_path(booking), class:"dropdown-item" %></li>
                   <% if booking.waiting? %>
-                    <li><%= link_to 'Accept', accept_vendor_booking_path(booking), data: {turbo_method: :patch, turbo_confirm: 'Are you sure?' }, class: 'dropdown-item' %></li>
+                    <li><%= link_to 'Accept', accept_vendor_booking_path(booking), data: {turbo_method: :patch }, class: 'dropdown-item' %></li>
                     <li><%= link_to 'Refuse', refuse_vendor_booking_path(booking), data: {turbo_method: :patch, turbo_confirm: 'Are you sure?' }, class: 'dropdown-item' %></li>
+                  <% end %>
+                  <% if booking.accepted? %>
+                    <li><%= link_to 'Delivered', ongoing_vendor_booking_path(booking), data: {turbo_method: :patch }, class: 'dropdown-item' %></li>
+                  <% end %>
+                  <% if booking.ongoing? %>
+                    <li><%= link_to 'Received', completed_vendor_booking_path(booking), data: {turbo_method: :patch }, class: 'dropdown-item' %></li>
                   <% end %>
                 </ul>
               </div>

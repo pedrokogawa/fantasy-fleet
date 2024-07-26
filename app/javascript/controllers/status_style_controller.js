@@ -53,7 +53,9 @@ export default class extends Controller {
 			this.statusElementTarget.classList.add(
 				"border",
 				"border-warning",
-				"text-warning"
+				"text-warning",
+				"p-1",
+				"rounded"
 			);
 		} else if (this.statusElementTarget.dataset.status === "available") {
 			this.statusElementTarget.classList.add(

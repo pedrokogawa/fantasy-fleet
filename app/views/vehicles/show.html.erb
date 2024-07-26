@@ -61,7 +61,7 @@
           <!-- IF current_user created a Booking with the Vehicle, user can create a Review once -->
           <div>
             <% if current_user %>
-              <% @user_booking = current_user.bookings.find_by(vehicle_id: @vehicle.id, status: 'accepted') %>
+              <% @user_booking = current_user.bookings.find_by(vehicle_id: @vehicle.id, status: 'completed') %>
               <% if @user_booking %>
                 <% @existing_review = Review.find_by(user_id: @current_user_id, vehicle_id: @vehicle.id) %>
                 <% unless @existing_review %>
