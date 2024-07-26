@@ -14,9 +14,9 @@
   <div>
     <div class="row" data-vendor-bookings-filter-target="cards">
       <% @bookings.each do |booking| %>
-        <div class="col-md-3 booking-card" data-status="<%= booking.status %>">
+        <div class="col-md-3 booking-card mb-3" data-status="<%= booking.status %>">
           <a href="<%= booking_path(booking) %>" class="hoverClass">
-            <div class="card card-custom shadow hoverTransform" style="height:350px; width: 226px;">
+            <div class="card card-custom shadow-sm hoverTransform" style="height:350px; width: 226px;">
               <div class="image-container">
                 <div class="image-wrapper">
                   <% if booking.vehicle.photo.attached? %>
@@ -28,26 +28,30 @@
               </div>
               <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                  <strong><%= booking.vehicle.name %></strong>
+                  <div class="">
+                    <strong><%= booking.vehicle.name %></strong>
+                  </div>
                   <div data-controller="status-style">
                     <span data-status-style-target="statusElement" data-status="<%= booking.status %>">
                       <%= booking.status.capitalize %>
                     </span>
                   </div>
                 </div>
-                <div class="d-flex mb-1">
-                  <p class="m-0" style="font-size:12px"><%= booking.start_date.strftime("%d %b %Y") %> - <%= booking.end_date.strftime("%d %b %Y") %></p>
+                <div class="d-flex mb-1 justify-content-between">
+                  <div style="font-size:12px">
+                    <%= booking.vehicle.seats %>
+                    <i class="fa-solid fa-user-group"></i>
+                  </div>
                   <div class="ms-2" style="font-size:12px; color:#c1121f">
                     <strong><%= number_to_currency(booking.total_price, unit: "¥", delimiter: ",", precision: 0) %></strong>
                   </div>
                 </div>
                 <div class="card-text" style="font-size:12px">
+                  <div class="d-flex justify-content-between mb-1">
+                    <p class="m-0 border-bottom" style="font-size:12px"><%= booking.start_date.strftime("%d %b %Y") %> - <%= booking.end_date.strftime("%d %b %Y") %></p>
+                  </div>
                   <div class="mb-1">
                     <%= booking.vehicle.location %>
-                  </div>
-                  <div style="font-size:12px">
-                    <%= booking.vehicle.seats %>
-                    <i class="fa-solid fa-user-group"></i>
                   </div>
                 </div>
               </div>
