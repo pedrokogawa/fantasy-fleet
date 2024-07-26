@@ -1,5 +1,5 @@
 class Vendor::BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :accept, :refuse]
+  before_action :set_booking, only: [:show, :accept, :refuse, :ongoing, :completed]
 
   def index
     @vendor_id = current_user.id
@@ -9,12 +9,38 @@ class Vendor::BookingsController < ApplicationController
   
   def accept
     @booking.accepted!
-    redirect_to vendor_bookings_path, notice: "Booking was successfully accepted!"
+    if params[:from] == "show"
+      redirect_to vendor_booking_path(@booking), notice: "Booking was successfully accepted!"
+    else
+      redirect_to vendor_bookings_path, notice: "Booking was successfully accepted!"
+    end
   end
 
   def refuse
     @booking.refused!
-    redirect_to vendor_bookings_path, notice: "Booking was refused!"
+    if params[:from] == "show"
+      redirect_to vendor_booking_path(@booking), notice: "Booking was refused!"
+    else
+      redirect_to vendor_bookings_path, notice: "Booking was refused!"
+    end
+  end
+
+  def ongoing
+    @booking.ongoing!
+    if params[:from] == "show"
+      redirect_to vendor_booking_path(@booking), notice: "Booking was delivered!"
+    else
+      redirect_to vendor_bookings_path, notice: "Booking was delivered!"
+    end
+  end
+
+  def completed
+    @booking.completed!
+    if params[:from] == "show"
+      redirect_to vendor_booking_path(@booking), notice: "Booking was received!"
+    else
+      redirect_to vendor_bookings_path, notice: "Booking was received!"
+    end
   end
 
   def show

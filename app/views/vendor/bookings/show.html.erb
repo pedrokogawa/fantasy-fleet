@@ -39,8 +39,14 @@
               <%= link_to "Return all Bookings", vendor_bookings_path, class: 'btn btn-dark fw-lighter fs-6 my-1 py-0', style: 'font-size: 14px !important; width: 200px'%>
               <%= link_to "Go to this Vehicle", vehicle_path(@booking.vehicle), class: "btn btn-dark fw-lighter fs-6 mb-1 py-0", style: 'font-size: 14px !important; width: 200px' %>
               <% if @booking.waiting? %>
-                <%= link_to 'Accept', accept_vendor_booking_path(@booking), data: {turbo_method: :patch, turbo_confirm: 'Are you sure?' }, class: 'btn btn-dark fw-lighter fs-6 mb-1 py-0', style: 'font-size: 14px !important; width: 200px' %>
-                <%= link_to 'Refuse', refuse_vendor_booking_path(@booking), data: {turbo_method: :patch, turbo_confirm: 'Are you sure?' }, class: 'btn btn-dark fw-lighter fs-6 mb-1 py-0', style: 'font-size: 14px !important; width: 200px' %>
+                <%= link_to 'Accept', accept_vendor_booking_path(@booking, from: 'show'), data: {turbo_method: :patch }, class: 'btn btn-dark fw-lighter fs-6 mb-1 py-0', style: 'font-size: 14px !important; width: 200px' %>
+                <%= link_to 'Refuse', refuse_vendor_booking_path(@booking, from: 'show'), data: {turbo_method: :patch, turbo_confirm: 'Are you sure?' }, class: 'btn btn-dark fw-lighter fs-6 mb-1 py-0', style: 'font-size: 14px !important; width: 200px' %>
+              <% end %>
+              <% if @booking.accepted? %>
+                <%= link_to 'Delivered', ongoing_vendor_booking_path(@booking, from: 'show'), data: {turbo_method: :patch }, class: 'btn btn-dark fw-lighter fs-6 mb-1 py-0', style: 'font-size: 14px !important; width: 200px' %>
+              <% end %>
+              <% if @booking.ongoing? %>
+                <%= link_to 'Received', completed_vendor_booking_path(@booking, from: 'show'), data: {turbo_method: :patch }, class: 'btn btn-dark fw-lighter fs-6 mb-1 py-0', style: 'font-size: 14px !important; width: 200px' %>
               <% end %>
             </div>
           </div>

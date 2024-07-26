@@ -6,7 +6,7 @@
       <%= f.hidden_field :vehicle_id, value: @vehicle.id %>
     </div>
     <!-- Start Date Input -->
-    <%= f.input :start_date, as: :date, html5: true, disabled: @vehicle.availability == 'unavailable', input_html: {  data: { controller: "datepicker", date_calculator_target: 'startDate', action: 'change->date-calculator#updateDayCount' } }, label: 'Start Date:' %>
+    <%= f.input :start_date, as: :date, html5: true, disabled: @vehicle.availability == 'unavailable', input_html: {  data: { controller: "datepicker", date_calculator_target: 'startDate', action: 'change->date-calculator#updateDayCount' }, style: "cursor: pointer !important;" }, label: 'Start Date:' %>
     <!-- End Date Input -->
     <%= f.input :end_date, as: :date, html5: true, disabled: @vehicle.availability == 'unavailable', input_html: { data: { controller: "datepicker", date_calculator_target: 'endDate', action: 'change->date-calculator#updateDayCount' } }, label: 'End Date:' %>
     <p data-date-calculator-target="dayCount" class="text-muted">Number of days: </p>
