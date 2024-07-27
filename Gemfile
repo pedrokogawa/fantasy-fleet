@@ -54,7 +54,6 @@ gem 'cloudinary'
 gem 'mini_magick'
 gem "devise"
 gem "geocoder"
-gem "pundit"
 
 
 group :development, :test do
