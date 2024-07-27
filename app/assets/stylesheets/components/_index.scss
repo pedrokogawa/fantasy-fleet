@@ -12,6 +12,10 @@
 @import "review";
 @import "pulsing_button";
 
+a {
+	text-decoration: none !important;
+}
+
 .sticky-map-button {
 	position: fixed;
 	bottom: 20px;
