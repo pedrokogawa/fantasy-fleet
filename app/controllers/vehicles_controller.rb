@@ -4,7 +4,7 @@ class VehiclesController < ApplicationController
 
     # //root page// has @vehicles ~ test OK
     def index
-        @vehicles = Vehicle.all
+        @vehicles = policy_scope(Vehicle).all
         @markers = @vehicles.geocoded.map do |vehicle|
             {
             lat: vehicle.latitude,
@@ -56,28 +56,31 @@ class VehiclesController < ApplicationController
 
     # show has @vehicle ~ test OK
     def show
-        @booking = Booking.new
-        @reviews = @vehicle.reviews
-        @review = Review.new
-        @current_user_id = current_user.id if user_signed_in?
-        @average_rating = average_rating_calculation(@vehicle)
-        @reviews_size = @reviews.size
-            # Calculate the sizes for each rating
-        @rating_1 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 1).size * 100 / @reviews_size).round
-        @rating_2 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 2).size * 100 / @reviews_size).round
-        @rating_3 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 3).size * 100 / @reviews_size).round
-        @rating_4 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 4).size * 100 / @reviews_size).round
-        @rating_5 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 5).size * 100 / @reviews_size).round
+      authorize @vehicle
+      @booking = Booking.new
+      @reviews = @vehicle.reviews
+      @review = Review.new
+      @current_user_id = current_user.id if user_signed_in?
+      @average_rating = average_rating_calculation(@vehicle)
+      @reviews_size = @reviews.size
+          # Calculate the sizes for each rating
+      @rating_1 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 1).size * 100 / @reviews_size).round
+      @rating_2 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 2).size * 100 / @reviews_size).round
+      @rating_3 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 3).size * 100 / @reviews_size).round
+      @rating_4 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 4).size * 100 / @reviews_size).round
+      @rating_5 = @reviews_size.zero? ? 0 : (@reviews.where(rating: 5).size * 100 / @reviews_size).round
     end
 
     # new has @vehicle ~ test OK
     def new
         @vehicle = Vehicle.new
+        authorize @vehicle
     end
 
     def create
         @vehicle = Vehicle.new(vehicle_params)
         @vehicle.user_id = current_user.id
+        authorize @vehicle
 
         if @vehicle.save
             redirect_to vehicle_path(@vehicle)
@@ -88,15 +91,18 @@ class VehiclesController < ApplicationController
 
     # edit has @vehicle and can update ~ test OK
     def edit
+      authorize @vehicle
     end
 
     def update
+      authorize @vehicle
         @vehicle.update(vehicle_params)
         redirect_to vehicle_path
     end
 
     # destory has @vehicle and can DESTROY ~ test OK
     def destroy
+        authorize @vehicle
         @vehicle.destroy
         redirect_to vehicles_path, status: :see_other
     end
@@ -115,7 +121,6 @@ class VehiclesController < ApplicationController
 
     def set_vehicle
       @vehicle = Vehicle.find(params[:id])
-      authorize @vehicle
     end
 
     def vehicle_params
