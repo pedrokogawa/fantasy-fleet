@@ -4,11 +4,10 @@ class Vendor::BookingsController < ApplicationController
   def index
     @vendor_id = current_user.id
     @vehicles = Vehicle.all.where(user_id: @vendor_id)
-    @bookings = policy_scope(Booking.all.where(vehicle_id: @vehicles.pluck(:id)))
+    @bookings = Booking.all.where(vehicle_id: @vehicles.pluck(:id))
   end
   
   def accept
-    authorize @booking
     @booking.accepted!
     if params[:from] == "show"
       redirect_to vendor_booking_path(@booking), notice: "Booking was successfully accepted!"
@@ -18,7 +17,6 @@ class Vendor::BookingsController < ApplicationController
   end
 
   def refuse
-    authorize @booking
     @booking.refused!
     if params[:from] == "show"
       redirect_to vendor_booking_path(@booking), notice: "Booking was refused!"
@@ -46,7 +44,6 @@ class Vendor::BookingsController < ApplicationController
   end
 
   def show
-    authorize @booking
   end
   
   private
