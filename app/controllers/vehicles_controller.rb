@@ -13,6 +13,44 @@ class VehiclesController < ApplicationController
             marker_html: render_to_string(partial: "marker", locals: { vehicle: vehicle })
             }
         end
+        if params[:search].present?
+          @vehicles = Vehicle.where("name ILIKE ? OR category ILIKE ?", "%#{params[:search]}%", "%#{params[:search]}%")
+        else
+          @vehicles = Vehicle.all
+        end
+
+        if params[:category].present?
+          @vehicles = @vehicles.where(category: params[:category])
+        end
+
+        if params[:seats].present?
+          seats = params[:seats].to_i
+          @vehicles = @vehicles.where(seats: seats) if seats > 0
+        end
+
+        if params[:price_min].present?
+          price_min = params[:price_min].to_i
+          @vehicles = @vehicles.where("price_per_day >= ?", price_min) if price_min >= 0
+        end
+
+        if params[:price_max].present?
+          price_max = params[:price_max].to_i
+          @vehicles = @vehicles.where("price_per_day <= ?", price_max) if price_max > 0
+        end
+
+        if params[:speed_min].present?
+          speed_min = params[:speed_min].to_i
+          @vehicles = @vehicles.where("speed >= ?", speed_min) if speed_min >= 0
+        end
+
+        if params[:speed_max].present?
+          speed_max = params[:speed_max].to_i
+          @vehicles = @vehicles.where("speed <= ?", speed_max) if speed_max > 0
+        end
+
+        if params[:location].present?
+          @vehicles = @vehicles.where("location ILIKE ?", "%#{params[:location]}%")
+        end
     end
     
     # show has @vehicle ~ test OK 
