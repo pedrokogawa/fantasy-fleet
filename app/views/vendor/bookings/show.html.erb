@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container mt-5">
   <h2>Booking Details</h2>
   <p>Posted on <%= @booking.created_at.strftime("%d %b %Y") %></p>
   <div>
-    <div class="d-flex border my-3 shadow bg-white p-2 rounded" style="height: auto; width: 1000px" >
-      <div class="image-wrapper">
+    <div class="d-flex border my-3 shadow bg-white p-2 rounded" style="height: auto; width: 100%" >
+      <div>
         <% if @booking.vehicle.photo.attached? %>
           <%= cl_image_tag @booking.vehicle.photo.key, crop: :fill ,height: 350, width: 500, class:"m-3 rounded border" %>
         <% else %>
