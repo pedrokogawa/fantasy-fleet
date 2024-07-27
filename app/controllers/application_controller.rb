@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
 
   include Pundit::Authorization
 
-  after_action :verify_authorized, except: :index, unless: :skip_pundit?
-  after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
+  # after_action :verify_authorized, except: :index, unless: :skip_pundit?
+  # after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   # Redirect to vehicle page or default to root_path
   def after_sign_in_path_for(resource)
     redirect_url = vehicle_path(:redirect_id) || root_path
-    redirect_url
+    redirect_url  
   end
 
   def user_not_authorized
