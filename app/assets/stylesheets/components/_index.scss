@@ -13,22 +13,22 @@
 @import "pulsing_button";
 
 .sticky-map-button {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000; /* Adjust the z-index as needed */
-  background-color: rgb(30, 30, 30);
-  border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+	position: fixed;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 1000; /* Adjust the z-index as needed */
+	background-color: rgb(30, 30, 30);
+	border: none;
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
 }
 
 .sticky-map-button i {
-  color: #0074b7;
+	color: #0074b7;
 }
