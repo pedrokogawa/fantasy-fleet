@@ -15,7 +15,7 @@
   </head>
   <body>
     <!-- MAIN Navbar -->
-    <%= render "shared/navbar" %>
+    <%= render "shared/flashes" %>
     <!-- CATEGORIES ICONS Navbar -->
     <% if current_page?(root_path) %>
       <%= render "shared/hero" %>
@@ -26,8 +26,7 @@
       <%= render "shared/filters" %>
     <% end %>
     <!-- Devise alerts and notice -->
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%=render "shared/flashes" %>
     <%= yield %>
     <!-- Footer -->
     <%= render "shared/footer" %>
