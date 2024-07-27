@@ -4,10 +4,11 @@ class BookingsController < ApplicationController
     # index is at /boookings ~ test OK
     #filtered with bookings created by the user only
     def index
-        @bookings = Booking.all.where(user_id: current_user.id)
+        @bookings = policy_scope(Booking.all.where(user_id: current_user.id))
     end
 
     def show
+      authorize @booking
       @vehicle = @booking.vehicle
       @review = Review.new
       @average_rating = average_rating_calculation(@vehicle)
@@ -16,7 +17,8 @@ class BookingsController < ApplicationController
 
     #new form is at /bookings/new ~ test OK
     def new
-      @booking = Booking.new
+        @booking = Booking.new
+        authorize @booking
     end
 
     def create
@@ -24,6 +26,8 @@ class BookingsController < ApplicationController
         @booking.user_id = current_user.id
         @booking.status = :waiting
         @booking.total_price_calculation
+
+        authorize @booking
 
         # Redirect to vehicle show page if error occurs
           if @booking.total_price == 0
@@ -37,21 +41,24 @@ class BookingsController < ApplicationController
 
     #edit form is at /bookings/:id/edit ~ test OK
     def edit
+      authorize @booking
     end
 
     def update
-        if @booking.update(booking_params)
-            @booking.total_price_calculation
-            @booking.save
-            redirect_to booking_path(@booking), notice: 'Booking successfully updated!'
-        else
-            render :edit
-        end
+      authorize @booking
+      if @booking.update(booking_params)
+          @booking.total_price_calculation
+          @booking.save
+          redirect_to booking_path(@booking), notice: 'Booking successfully updated!'
+      else
+          render :edit
+      end
     end
 
     #canceling is at /bookings/:id/cancel ~ test OK
     #this ONLY sets up the status on CANCEL
     def cancel
+      authorize @booking
         @booking.canceled!
         if @booking.save
             redirect_to booking_path(@booking), notice: 'Booking successfully canceled!'
