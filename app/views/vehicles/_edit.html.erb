@@ -1,0 +1,30 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for @vehicle do |f| %>
+          <%= f.input :name, input_html: { maxlength: 50 } %>
+          <%= f.input :category, as: :select, collection: [['Car', 'car'], ['Bicycle', 'bicycle'], ['ATV', 'atv'], ['Truck', 'truck'], ['Van', 'van'], ['Boat', 'boat'], ['Airplane', 'airplane'], ['Spaceship', 'spaceship']] %>
+          <%= f.input :seats, input_html: { min: 1 } %>
+          <%= f.input :speed, input_html: { min: 0 } %>
+          <%= f.input :price_per_day, input_html: { min: 0 } %>
+          <%= f.input :description, input_html: { maxlength: 500 } %>
+          <%= f.input :availability, as: :select, collection: [['Available', 'available'], ['Unavailable', 'unavailable']] %>
+          <%= f.input :location, input_html: { maxlength: 100 },  input_html: {data: {location_autocomplete_edit_target: "location"}, class: "d-none"},
+        wrapper_html: {data: {controller: "location-autocomplete-edit", location_autocomplete_edit_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+          <%= f.input :photo, as: :file %>
+        </div>
+        <div class="modal-footer">
+          <div id="button-form">
+            <%= f.button :submit, "Update", class: 'btn btn-dark w-100' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
