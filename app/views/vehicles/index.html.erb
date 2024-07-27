@@ -1,7 +1,28 @@
 <% link_to "Create a vehicle", new_vehicle_path, class: 'btn btn-primary' %>
 <% link_to "My Bookings", bookings_path, class: 'btn btn-primary' %>
 <% link_to "My Vehicle Bookings", vendor_bookings_path, class: 'btn btn-primary' %>
-
+<style>
+  .card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .image-container {
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+  }
+  .image-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .card-custom {
+    width: 100%;
+  }
+</style>
 <div class="container" id="index">
   <div class="row">
     <% @vehicles.each do |vehicle| %>
@@ -32,7 +53,6 @@
     <% end %>
   </div>
 </div>
-
 <!-- Button trigger modal -->
 <!-- Modal -->
 <div class="modal fade" id="map-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -48,6 +68,6 @@
     </div>
   </div>
 </div>
-<button type="button" class="border-0 sticky-map-button" data-bs-toggle="modal" data-bs-target="#map-modal" style="z-index: 9999;">
+<button type="button" class="border-0 sticky-map-button" data-bs-toggle="modal" data-bs-target="#map-modal">
   <i class="fa-solid fa-map-location-dot fa-2xl"></i>
 </button>

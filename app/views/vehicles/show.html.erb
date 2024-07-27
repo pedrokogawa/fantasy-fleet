@@ -2,35 +2,45 @@
   <div class="container-fluid">
     <div class="row mb-3">
       <div class="col-md-8 col-sm-12 col-xs-12">
-        <div class="row">
-          <div class="col-12">
-            <%= render "main" %> <!--RENDER ON MAIN VEHICLE INFORMATION (vehicles >> _main.html.erb)-->
-          </div>
+        <div class="col-12">
+          <%= render "main" %> <!--RENDER ON MAIN VEHICLE INFORMATION (vehicles >> _main.html.erb)-->
         </div>
-      </div>
-      <% if current_user && @vehicle.user_id != current_user.id %>
-        <div class="col-md-4 col-sm-12 col-xs-12">
-          <div class="ms-5">
-            <h1>Booking form</h1>
-            <%= render 'bookings/new', booking: @booking, vehicle: @vehicle %> <!--RENDER ON BOOKING FORM (booking >>_new.html.erb)-->
-            <%= render 'map' %> <!--RENDER SHOW MAP (vehicles >>_map.html.erb)-->
-          </div>
-        </div>
-      <% end %>
-      <% unless current_user %>
-        <div class="col-md-4 col-sm-12 col-xs-12">
-          <div class="ms-5"> <!-- ########## SIGN IN BUTTON with MODAL ##########-->
-            <button type="button" class="btn btn-dark w-100 pulse mb-4" data-bs-toggle="modal" data-bs-target="#loginModal">Sign in to Book</button>
-            <%= render "devise/sessions/signin_modal" %> <!-- RENDER Sign in Modal (deivse >> sessions >> _signin_modal.html.erb)-->
-          </div>
-          <div class="ms-5">
-            <div style="pointer-events: none; opacity: 0.5;">
+        <% if user_signed_in? && @vehicle.user_id != current_user.id %>
+          <div class="col-md-4 col-sm-12 col-xs-12">
+            <div class="ms-5">
+              <h1>Booking form</h1>
               <%= render 'bookings/new', booking: @booking, vehicle: @vehicle %> <!--RENDER ON BOOKING FORM (booking >>_new.html.erb)-->
+              <%= render 'map' %> <!--RENDER SHOW MAP (vehicles >>_map.html.erb)-->
             </div>
-            <%= render 'map' %> <!--RENDER SHOW MAP (vehicles >>_map.html.erb)-->
           </div>
-        </div>
-      <% end %>
+        <% elsif user_signed_in? && @vehicle.user_id == current_user.id %>
+          <div class="col-md-4 col-sm-12 col-xs-12">
+            <div class="ms-5"> <!-- ########## EDIT and DELETE buttons on VENDOR ##########-->
+              <%= link_to "Edit this vehicle", edit_vehicle_path(@vehicle), class: "btn btn-dark fw-lighter fs-6 w-100 mb-1" %>
+              <%= link_to "Delete vehicle", vehicle_path(@vehicle), class: "btn btn-dark fw-lighter fs-6 w-100 mb-4", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+            </div>
+            <div class="ms-5">
+              <div style="pointer-events: none; opacity: 0.5;">
+                <%= render 'bookings/new', booking: @booking, vehicle: @vehicle %> <!--RENDER ON BOOKING FORM (booking >>_new.html.erb)-->
+              </div>
+              <%= render 'map' %> <!--RENDER SHOW MAP (vehicles >>_map.html.erb)-->
+            </div>
+          </div>
+        <% else %>
+          <div class="col-md-4 col-sm-12 col-xs-12">
+            <div class="ms-5"> <!-- ########## SIGN IN BUTTON with MODAL ##########-->
+              <button type="button" class="btn btn-dark w-100 pulse mb-4" data-bs-toggle="modal" data-bs-target="#loginModal">Sign in to Book</button>
+              <%= render "devise/sessions/signin_modal" %> <!-- RENDER Sign in Modal (deivse >> sessions >> _signin_modal.html.erb)-->
+            </div>
+            <div class="ms-5">
+              <div style="pointer-events: none; opacity: 0.5;">
+                <%= render 'bookings/new', booking: @booking, vehicle: @vehicle %> <!--RENDER ON BOOKING FORM (booking >>_new.html.erb)-->
+              </div>
+              <%= render 'map' %> <!--RENDER SHOW MAP (vehicles >>_map.html.erb)-->
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
@@ -51,7 +61,7 @@
           <!-- IF current_user created a Booking with the Vehicle, user can create a Review once -->
           <div>
             <% if current_user %>
-              <% @user_booking = current_user.bookings.find_by(vehicle_id: @vehicle.id, status: 'accepted') %>
+              <% @user_booking = current_user.bookings.find_by(vehicle_id: @vehicle.id, status: 'completed') %>
               <% if @user_booking %>
                 <% @existing_review = Review.find_by(user_id: @current_user_id, vehicle_id: @vehicle.id) %>
                 <% unless @existing_review %>

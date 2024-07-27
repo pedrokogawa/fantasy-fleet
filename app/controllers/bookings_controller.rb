@@ -11,6 +11,7 @@ class BookingsController < ApplicationController
       authorize @booking
       @vehicle = @booking.vehicle
       @review = Review.new
+      @average_rating = average_rating_calculation(@vehicle)
       @current_user_id = current_user.id
     end
 
@@ -75,4 +76,13 @@ class BookingsController < ApplicationController
     def booking_params
       params.require(:booking).permit(:start_date, :end_date, :total_price, :status, :vehicle_id)
     end
+    
+    def average_rating_calculation(vehicle)
+      reviews = vehicle.reviews
+      return 0 if reviews.empty?
+
+      total_rating = reviews.sum(:rating)
+      average_rating = total_rating.to_f / reviews.size
+      average_rating.round(1)
+  end
 end

@@ -8,10 +8,11 @@
   </div>
   <div class="w-50">
     <div class="d-flex justify-content-between">
-      <h2 class="fw-bold m-0"><%= @booking.vehicle.name %></h2>
-      <% if @booking.status == "accepted" %>
+      <h2 class="fw-bold mb-0 me-3"><%= @booking.vehicle.name %></h2>
+      <%= render "reviews/stars" %>
+      <% if @booking.status == "completed" %>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Write a Review</button>
+        <button type="button" class="btn btn-dark ms-auto" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Write a Review</button>
         <!-- Modal -->
         <%= render "reviews/new" %>
       <% else %>
@@ -38,7 +39,7 @@
       <%= @booking.vehicle.description %>
     </div>
     <div>
-      <%= link_to "Edit", edit_booking_path, class: 'btn btn-dark', style: "width: 555px"%>
+      <%= link_to "Edit this Booking", edit_booking_path, class: 'btn btn-dark', style: "width: 555px"%>
     </div>
   </div>
 </div>
