@@ -17,7 +17,7 @@
     <div data-vendor-bookings-filter-target="cards">
       <% @bookings.each do |booking| %>
         <div class="d-flex border my-3 shadow bg-white p-2 rounded booking-card vendor-card-booking" data-status="<%= booking.status %>" style="height: auto; width: 1000px" >
-          <div class="image-wrapper">
+          <div>
             <%= link_to vendor_booking_path(booking) do %>
               <% if booking.vehicle.photo.attached? %>
                 <%= cl_image_tag booking.vehicle.photo.key, width: 130, height: 100, crop: "auto", class:"m-3 rounded border" %>
