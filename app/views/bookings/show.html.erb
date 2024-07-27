@@ -1,9 +1,11 @@
 <div class="container d-flex justify-content-between">
   <div>
-    <% if @booking.vehicle.photo.attached? %>
-      <%= cl_image_tag @booking.vehicle.photo.key, height: 350, width: 500, crop: :fill, class: "rounded-3" %>
-    <% else %>
-      <%= image_tag 'https://tork.buzz/__export/1718370996032/sites/tork/img/2024/06/14/image_10.png_1203501776.png', height: 350, width: 500, crop: :fill, class: "rounded-3" %>
+    <%= link_to vehicle_path(@booking.vehicle) do %>
+      <% if @booking.vehicle.photo.attached? %>
+        <%= cl_image_tag @booking.vehicle.photo.key, height: 350, width: 500, crop: :fill, class: "rounded-3" %>
+      <% else %>
+        <%= image_tag 'https://tork.buzz/__export/1718370996032/sites/tork/img/2024/06/14/image_10.png_1203501776.png', height: 350, width: 500, crop: :fill, class: "rounded-3" %>
+      <% end %>
     <% end %>
   </div>
   <div class="w-50">
