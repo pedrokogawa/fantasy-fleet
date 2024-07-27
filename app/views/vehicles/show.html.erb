@@ -16,7 +16,8 @@
         <% elsif user_signed_in? && @vehicle.user_id == current_user.id %>
           <div class="col-md-4 col-sm-12 col-xs-12">
             <div class="ms-5"> <!-- ########## EDIT and DELETE buttons on VENDOR ##########-->
-              <%= link_to "Edit this vehicle", edit_vehicle_path(@vehicle), class: "btn btn-dark fw-lighter fs-6 w-100 mb-1" %>
+              <button type="button" class="btn btn-dark fw-lighter fs-6 w-100 mb-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit this vehicle</button>
+              <%= render "edit" %>
               <%= link_to "Delete vehicle", vehicle_path(@vehicle), class: "btn btn-dark fw-lighter fs-6 w-100 mb-4", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
             </div>
             <div class="ms-5">

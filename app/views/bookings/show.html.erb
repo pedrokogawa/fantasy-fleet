@@ -39,7 +39,11 @@
       <%= @booking.vehicle.description %>
     </div>
     <div>
-      <%= link_to "Edit this Booking", edit_booking_path, class: 'btn btn-dark', style: "width: 555px"%>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-dark w-100" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Edit this Booking
+      </button>
+      <%= render "edit" %>
     </div>
   </div>
 </div>

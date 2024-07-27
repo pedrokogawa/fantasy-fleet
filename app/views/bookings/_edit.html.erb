@@ -1,0 +1,26 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Booking</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for @booking do |f| %>
+          <div class="form-inputs">
+            <%= f.input :start_date, as: :string, input_html: { data: { controller: "datepicker", dates: @disabled_dates } } %>
+            <%= f.input :end_date, as: :string, input_html: { data: { controller: "datepicker", dates: @disabled_dates } } %>
+            <%= f.input :vehicle_id, collection: Vehicle.all.map { |vehicle| [vehicle.name, vehicle.id] }, prompt: "Select a vehicle" %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="form-actions">
+            <%= f.button :submit, class: 'btn-dark w-100' %>
+          </div>
+          <%= link_to "Cancel Booking", cancel_booking_path(@booking), data: { turbo_method: :patch, turbo_confirm: "Are you sure you want to cancel this booking?" }, class: "btn btn-danger" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
