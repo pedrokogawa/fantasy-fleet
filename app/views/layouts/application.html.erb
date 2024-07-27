@@ -26,8 +26,7 @@
       <%= render "shared/filters" %>
     <% end %>
     <!-- Devise alerts and notice -->
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%=render "shared/flashes" %>
     <%= yield %>
     <!-- Footer -->
     <%= render "shared/footer" %>
