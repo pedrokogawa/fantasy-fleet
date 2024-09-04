@@ -23,6 +23,10 @@
 # puts "created models"
 
 # Creation of users.
+puts "Deleting Previous Reviews"
+Review.destroy_all
+puts "Deleting Previous Bookings"
+Booking.destroy_all
 puts "Deleting Previous Users"
 User.destroy_all
 ActiveRecord::Base.connection.reset_pk_sequence!('users')
@@ -145,7 +149,8 @@ vehicle4 = Vehicle.create!(
   availability: "available",
   user_id: 1
 )
-image4 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721399347/development/z2c3uwojqgnv5bn4toouy0za1rcv.avif")
+puts "test"
+image4 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721457223/development/0bqher5khyjo0pjzqzmtkpu4yuje.avif")
 puts "created #{vehicle4.name}"
 vehicle5 = Vehicle.create!(
   name: "Scania",
@@ -275,7 +280,7 @@ vehicle14 = Vehicle.create!(
   availability: "available",
   user_id: 1
 )
-image14 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721308865/development/duqq7lp8ozevaa9a792vg71m9oxl.jpg")
+image14 = URI.open("https://res.cloudinary.com/dfiehvopq/image/upload/v1721457241/development/tj8pkldpihcbcrrsn8myfni8zk3i.jpg")
 puts "created #{vehicle14.name}"
 vehicle15 = Vehicle.create!(
   name: "SpiderCopter",

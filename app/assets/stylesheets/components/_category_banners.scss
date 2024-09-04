@@ -49,6 +49,10 @@
 		transition: transform 5s, opacity 0.3s;
 		filter: brightness(30%);
 	}
+
+	#car-banner {
+		height: 120vh;
+	}
 }
 
 @media only screen and (min-width: 1100px) {
