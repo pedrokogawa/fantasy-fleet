@@ -129,3 +129,5 @@ class VehiclesController < ApplicationController
       params.require(:vehicle).permit(:name, :category, :seats, :speed, :price_per_day, :description, :location, :availability, :photo)
     end
 end
+
+#comment
